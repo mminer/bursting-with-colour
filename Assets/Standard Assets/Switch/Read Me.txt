@@ -1,0 +1,71 @@
+// Copyright (c) 2014 Rebel Hippo Inc. All rights reserved.
+
+Switch
+=======
+
+Thank you for using Switch. This package gives you advanced 
+trigger functionality which allows you to create a great deal 
+of game mechanics without touching any code.
+
+Current version: 1.0
+Supports: Unity 4.3
+
+
+Instructions
+=============
+1. Drag the SwitchTrigger script onto a GameObject.
+2. Configure the trigger's options
+	- Choose which tag can activate the trigger
+	- Choose how the trigger is activated
+	- Choose whether the trigger can be activated more than once
+	- (optional) Choose if you want a delay before the trigger does something
+	- (optional) Choose another trigger to affect once this one has activated
+3. Configure actions
+	- Select a target GameObject you would like to perform an action on
+	- (optional) Choose a component (script, light, camera, etc) from the 
+	  GameObject to affect instead of the GameObject itself
+	- Choose an action for the trigger to perform
+	- Configure extra options some actions require
+
+A single trigger can have as many actions as you'd like. 
+You can drag multiple SwitchTrigger scripts onto a GameObject.
+
+
+Usage
+======
+- Enabling/Disabling Components and GameObjects
+- Destroying Components and GameObjects
+- Spawning prefabs and GameObjects at a spawn point
+- Calling public functions on Components and Monobehaviours
+- Playing, stopping, pausing, resuming, and speeding up animations
+- Playing sounds
+
+
+Demo
+=====
+There is a Demo scene included with Switch. It demonstrates basic functionality 
+with each use case. However, triggers can be linked together to create fairly 
+robust systems.
+
+
+Notes
+=============
+-- Call Function --
+Please keep in mind that when using the "Call Function" action you should avoid
+renaming the selected function as it will break the reference in the trigger(s). 
+If we can find a good solution to avoid this, we will release an update.
+
+-- Button Press --
+The object permitted to activate the trigger must be touching the trigger's 
+collider when pressing the button.
+
+-- Animations --
+If you are using a trigger to loop an animation, ensure the animation 
+asset has its 'Wrap Mode' set to 'Loop' to prevent a delay.
+
+
+
+Support
+========
+Please contact support@lumospowered.com with "Switch" in the subject if you have 
+any questions or comments.
