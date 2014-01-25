@@ -6,6 +6,8 @@ public class CameraController : MonoBehaviour {
 	public bool continuousCameraMove = true;
 	public float cameraSpeed = 0.5f;
 	public float delayBeforeStart = 5f;
+	public float intervalToSpeedUp = 15f;
+	public float speedAcceleration = 0.2f;
 	public bool followTopPlayer = false;
 	public float followPlayerMargin = 0f;
 
@@ -14,6 +16,7 @@ public class CameraController : MonoBehaviour {
 
 	private bool moving = false;
 	private float farthestPlayer;
+	private float lastTimeAccelerated = 0f;
 
 	void Start ()
 	{
@@ -44,6 +47,13 @@ public class CameraController : MonoBehaviour {
 			UpdateFarthestPlayer ();
 			if ((transform.position.y + followPlayerMargin) < farthestPlayer)
 				transform.position = new Vector3(transform.position.x, farthestPlayer, transform.position.z);
+		}
+
+		//check for speed up
+		if (continuousCameraMove && (Time.time > (lastTimeAccelerated + intervalToSpeedUp)))
+		{
+			cameraSpeed += speedAcceleration;
+			lastTimeAccelerated = Time.time;
 		}
 	}
 
