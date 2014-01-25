@@ -327,6 +327,22 @@ Prefab:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
+      propertyPath: jumpForce
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200000, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200000, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200000, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
   m_RootGameObject: {fileID: 1818798000}
@@ -676,7 +692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
-  jumpForce: 150
+  jumpForce: 400
   crouchSpeed: .25
   airControl: 1
   whatIsGround:
@@ -873,7 +889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
-  jumpForce: 150
+  jumpForce: 400
   crouchSpeed: .25
   airControl: 1
   whatIsGround:
@@ -1190,6 +1206,10 @@ Prefab:
     - target: {fileID: 11400002, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
       propertyPath: playerNumber
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
+      propertyPath: jumpForce
+      value: 400
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
