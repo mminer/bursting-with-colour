@@ -7,15 +7,34 @@ using UnityEngine;
 /// </summary>
 public class LayerManager : MonoBehaviour
 {
+	#region Public Inspector Fields
+
+	public Material activeBlueMaterial;
+	public Material activeGreenMaterial;
+	public Material activeRedMaterial;
+	public Material activeYellowMaterial;
+
+	public Material inactiveBlueMaterial;
+	public Material inactiveGreenMaterial;
+	public Material inactiveRedMaterial;
+	public Material inactiveYellowMaterial;
+
+	#endregion
+
 	public static Layer blueLayer { get; private set;}
 	public static Layer greenLayer { get; private set; }
 	public static Layer redLayer { get; private set; }
 	public static Layer yellowLayer { get; private set; }
 
+	public static Dictionary<LayerColor, Material> activeMaterials { get; private set; }
+	public static Dictionary<LayerColor, Material> inactiveMaterials { get; private set; }
+
 	static Layer[] layers;
 
 	void Awake ()
 	{
+		SetMaterials();
+
 		layers = GameObject.FindGameObjectsWithTag("Layer")
 			.Select(go => go.GetComponent<Layer>())
 			.ToArray();
@@ -30,6 +49,25 @@ public class LayerManager : MonoBehaviour
 		foreach (var layer in layers) {
 			layer.active = false;
 		}
+	}
+
+	void SetMaterials ()
+	{
+		activeMaterials = new Dictionary<LayerColor, Material>()
+		{
+			{ LayerColor.Blue, activeBlueMaterial },
+			{ LayerColor.Green, activeGreenMaterial },
+			{ LayerColor.Red, activeRedMaterial },
+			{ LayerColor.Yellow, activeYellowMaterial },
+		};
+
+		inactiveMaterials = new Dictionary<LayerColor, Material>()
+		{
+			{ LayerColor.Blue, inactiveBlueMaterial },
+			{ LayerColor.Green, inactiveGreenMaterial },
+			{ LayerColor.Red, inactiveRedMaterial },
+			{ LayerColor.Yellow, inactiveYellowMaterial },
+		};
 	}
 
 	public static void AssignLayer (Player player)
@@ -55,6 +93,7 @@ public class LayerManager : MonoBehaviour
 		newLayer.active = true;
 		player.layer = newLayer;
 	}
+
 
 	static Layer[] GetInactiveLayers ()
 	{
