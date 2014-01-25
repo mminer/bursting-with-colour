@@ -77,14 +77,14 @@ public class PlayerController : MonoBehaviour
 		VerticalVelocity = MoveVector.y;
 		MoveVector = Vector3.zero;
 
-		if(Input.GetAxis(moveInputName) > deadZone || Input.GetAxis(moveInputName) < -deadZone){
+		if (Input.GetAxis(moveInputName) > deadZone || Input.GetAxis(moveInputName) < -deadZone){
 			MoveVector += new Vector3(Input.GetAxis(moveInputName),0,0);
 		}
 	}
 	
 	void HandleActionInput()
 	{
-		if(Input.GetButton(jumpInputName)){
+		if(Input.GetAxis(jumpInputName) < 0){
 			Jump();
 		}
 	}
