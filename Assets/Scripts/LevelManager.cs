@@ -10,9 +10,25 @@ public class LevelManager : MonoBehaviour
 
 	void Start ()
 	{
+		GenerateBorders();
 		GenerateGround();
 		GenerateTiles();
 		InitializeLayerChildren();
+	}
+
+	void GenerateBorders()
+	{
+		//bottom ground
+		for (int x = -5; x < (gridWidth + 5); x++)
+		{
+			CreateTile(LayerColor.Solid, x, -5);
+		}
+
+		//bottom walls
+
+		//bottom overhang
+
+		//tallwalls
 	}
 
 	void GenerateGround ()
@@ -27,7 +43,7 @@ public class LevelManager : MonoBehaviour
 
 	void GenerateTiles ()
 	{
-		for (int y = 0; y < 100; y += 5) {
+		for (int y = 0; y < 100; y++) {
 			for (int x = 0; x < gridWidth; x++) {
 				// Only create a new tile a specified percent of the time.
 				/*
@@ -37,7 +53,7 @@ public class LevelManager : MonoBehaviour
 				*/
 
 				// Randomly decide which color to make tile.
-				var color = (LayerColor)Random.Range(0, LayerManager.layers.Count);
+				var color = (LayerColor)Random.Range(0, LayerManager.layers.Count - 1);
 				CreateTile(color, x, y);
 			}
 		}
