@@ -4,13 +4,13 @@ using System.Collections;
 public class PlayerController : MonoBehaviour 
 {
 	public int playerNumber = 1;
-	public float gravity = 21f;	 			// downward force
-	public float terminalVelocity = 20f;	// max downward speed
-	public float jumpSpeed = 6f;			// jump height
-	public float moveSpeed = 10f;
+	public float Gravity = 21f;	 //downward force
+	public float TerminalVelocity = 20f;	//max downward speed
+	public float JumpSpeed = 6f;
+	public float MoveSpeed = 10f;
 	
-	public Vector3 moveVector;
-	public float verticalVelocity;
+	public Vector3 MoveVector;
+	public float VerticalVelocity;
 	
 	public CharacterController characterController;
 
@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		CheckColourSwitch();
 		CheckMovement();
 		HandleActionInput();
 		ProcessMovement();
@@ -73,17 +74,17 @@ public class PlayerController : MonoBehaviour
 	{
 		//move l/r
 		var deadZone = 0.1f;
-		verticalVelocity = moveVector.y;
-		moveVector = Vector3.zero;
+		VerticalVelocity = MoveVector.y;
+		MoveVector = Vector3.zero;
 
-		if (Input.GetAxis(moveInputName) > deadZone || Input.GetAxis(moveInputName) < -deadZone) {
-			moveVector += new Vector3(Input.GetAxis(moveInputName), 0, 0);
+		if(Input.GetAxis(moveInputName) > deadZone || Input.GetAxis(moveInputName) < -deadZone){
+			MoveVector += new Vector3(Input.GetAxis(moveInputName),0,0);
 		}
 	}
 	
 	void HandleActionInput()
 	{
-		if (Input.GetAxis(jumpInputName) < 0) {
+		if(Input.GetButton(jumpInputName)){
 			Jump();
 		}
 	}
@@ -91,45 +92,45 @@ public class PlayerController : MonoBehaviour
 	void ProcessMovement()
 	{
 		//transform moveVector into world-space relative to character rotation
-		moveVector = transform.TransformDirection(moveVector);
+		MoveVector = transform.TransformDirection(MoveVector);
 		
 		//normalize moveVector if magnitude > 1
-		if (moveVector.magnitude > 1) {
-			moveVector = Vector3.Normalize(moveVector);
+		if(MoveVector.magnitude > 1){
+			MoveVector = Vector3.Normalize(MoveVector);
 		}
 		
 		//multiply moveVector by moveSpeed
-		moveVector *= moveSpeed;
+		MoveVector *= MoveSpeed;
 		
 		//reapply vertical velocity to moveVector.y
-		moveVector = new Vector3(moveVector.x, verticalVelocity, moveVector.z);
+		MoveVector = new Vector3(MoveVector.x, VerticalVelocity, MoveVector.z);
 		
 		//apply gravity
 		ApplyGravity();
 		
 		//move character in world-space
-		characterController.Move(moveVector * Time.deltaTime);
+		characterController.Move(MoveVector * Time.deltaTime);
 	}
 	
 	void ApplyGravity() 
 	{
-		if (moveVector.y > -terminalVelocity) {
-			var x = moveVector.x;
-			var y = moveVector.y - gravity * Time.deltaTime;
-			var z = moveVector.z;
+		if (MoveVector.y > -TerminalVelocity) {
+			var x = MoveVector.x;
+			var y = MoveVector.y - Gravity * Time.deltaTime;
+			var z = MoveVector.z;
 
-			moveVector = new Vector3(x, y, z);
+			MoveVector = new Vector3(x, y, z);
 		}
 
-		if (characterController.isGrounded && moveVector.y < -1) {
-			moveVector = new Vector3(moveVector.x, (-1), moveVector.z);
+		if(characterController.isGrounded && MoveVector.y < -1){
+			MoveVector = new Vector3(MoveVector.x, (-1), MoveVector.z);
 		}
 	}
 	
 	public void Jump()
 	{
-		if (characterController.isGrounded) {
-			verticalVelocity = jumpSpeed;
+		if (characterController.isGrounded){
+			VerticalVelocity = JumpSpeed;
 		}
 	}
 }
