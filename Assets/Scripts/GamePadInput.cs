@@ -111,7 +111,6 @@ public class GamePadInput : MonoBehaviour {
 		//A
 		if (Input.GetButton ("A_1_Mac") || Input.GetButton("A_1_Win")) {
 			player1pressA = true;
-			Debug.Log ("Player1 Pressed A");
 		}
 		//B
 		if (Input.GetButton ("B_1_Mac") || Input.GetButton("B_1_Win")) {
