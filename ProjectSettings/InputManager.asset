@@ -133,7 +133,7 @@ InputManager:
     axis: 1
     joyNum: 2
   - serializedVersion: 3
-    m_Name: A_1
+    m_Name: A_1_Win
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -149,7 +149,7 @@ InputManager:
     axis: 1
     joyNum: 1
   - serializedVersion: 3
-    m_Name: A_2
+    m_Name: A_2_Win
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -197,7 +197,7 @@ InputManager:
     axis: 1
     joyNum: 2
   - serializedVersion: 3
-    m_Name: B_1
+    m_Name: B_1_Win
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -213,7 +213,7 @@ InputManager:
     axis: 1
     joyNum: 1
   - serializedVersion: 3
-    m_Name: B_2
+    m_Name: B_2_Win
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -261,7 +261,7 @@ InputManager:
     axis: 1
     joyNum: 2
   - serializedVersion: 3
-    m_Name: X_1
+    m_Name: X_1_Win
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -277,7 +277,7 @@ InputManager:
     axis: 1
     joyNum: 1
   - serializedVersion: 3
-    m_Name: X_2
+    m_Name: X_2_Win
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -325,7 +325,7 @@ InputManager:
     axis: 1
     joyNum: 2
   - serializedVersion: 3
-    m_Name: Y_1
+    m_Name: Y_1_Win
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -341,7 +341,7 @@ InputManager:
     axis: 1
     joyNum: 1
   - serializedVersion: 3
-    m_Name: Y_2
+    m_Name: Y_2_Win
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -389,7 +389,7 @@ InputManager:
     axis: 1
     joyNum: 2
   - serializedVersion: 3
-    m_Name: Start_1
+    m_Name: Start_1_Win
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -405,7 +405,7 @@ InputManager:
     axis: 1
     joyNum: 1
   - serializedVersion: 3
-    m_Name: Start_2
+    m_Name: Start_2_Win
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -453,7 +453,7 @@ InputManager:
     axis: 1
     joyNum: 2
   - serializedVersion: 3
-    m_Name: DPad_XAxis_1
+    m_Name: DPad_XAxis_1_Win
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -469,7 +469,7 @@ InputManager:
     axis: 5
     joyNum: 1
   - serializedVersion: 3
-    m_Name: DPad_XAxis_2
+    m_Name: DPad_XAxis_2_Win
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -613,7 +613,7 @@ InputManager:
     axis: 5
     joyNum: 2
   - serializedVersion: 3
-    m_Name: DPad_YAxis_1
+    m_Name: DPad_YAxis_1_Win
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -629,7 +629,7 @@ InputManager:
     axis: 6
     joyNum: 1
   - serializedVersion: 3
-    m_Name: DPad_YAxis_2
+    m_Name: DPad_YAxis_2_Win
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
