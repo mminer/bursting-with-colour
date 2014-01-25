@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 		get { return _layer; }
 		set {
 			_layer = value;
-			SetColor();
+			spriteRenderer.color = ColorManager.colors[value.color];
 		}
 	}
 
@@ -24,11 +24,5 @@ public class Player : MonoBehaviour
 	{
 		LayerManager.AssignLayer(this);
 		Debug.Log("Starting player on layer: " + layer.color);
-	}
-
-	void SetColor ()
-	{
-		spriteRenderer.color = ColorManager.colors[layer.color];
-		Debug.Log("Sprite color: " + spriteRenderer.color);
 	}
 }
