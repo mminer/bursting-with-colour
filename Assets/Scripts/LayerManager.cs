@@ -19,6 +19,8 @@ public class LayerManager : MonoBehaviour
 	public Material inactiveRedMaterial;
 	public Material inactiveYellowMaterial;
 
+	public Material solidGreyMaterial;
+
 	#endregion
 
 	public static Dictionary<LayerColor, Layer> layers { get; private set; }
@@ -39,6 +41,7 @@ public class LayerManager : MonoBehaviour
 			{ LayerColor.Green, activeGreenMaterial },
 			{ LayerColor.Red, activeRedMaterial },
 			{ LayerColor.Yellow, activeYellowMaterial },
+			{ LayerColor.Solid, solidGreyMaterial }
 		};
 
 		inactiveMaterials = new Dictionary<LayerColor, Material>()
@@ -47,6 +50,7 @@ public class LayerManager : MonoBehaviour
 			{ LayerColor.Green, inactiveGreenMaterial },
 			{ LayerColor.Red, inactiveRedMaterial },
 			{ LayerColor.Yellow, inactiveYellowMaterial },
+			{ LayerColor.Solid, solidGreyMaterial }
 		};
 	}
 
@@ -62,6 +66,7 @@ public class LayerManager : MonoBehaviour
 			{ LayerColor.Green, layerComponents.First(layer => layer.color == LayerColor.Green) },
 			{ LayerColor.Yellow, layerComponents.First(layer => layer.color == LayerColor.Yellow) },
 			{ LayerColor.Red, layerComponents.First(layer => layer.color == LayerColor.Red) },
+			{ LayerColor.Solid, layerComponents.First(layer => layer.color == LayerColor.Solid) }
 		};
 	}
 
@@ -72,7 +77,7 @@ public class LayerManager : MonoBehaviour
 			.Select(kvp => kvp.Value)
 			.ToArray();
 
-		var layer = inactiveLayers[Random.Range(0, inactiveLayers.Length)];
+		var layer = inactiveLayers[Random.Range(0, inactiveLayers.Length -1)];
 		layer.active = true;
 		player.layer = layer;
 	}
