@@ -46,8 +46,8 @@ public class LevelManager : MonoBehaviour
 	void CreateTile (LayerColor color, int x, int y)
 	{
 		var position = new Vector2(x, y);
-		tile = Instantiate(tile, position, Quaternion.identity) as Transform;
-		tile.parent = LayerManager.layers[color].transform;
+		var newTile = Instantiate(tile, position, Quaternion.identity) as Transform;
+		newTile.parent = LayerManager.layers[color].transform;
 	}
 
 	static void InitializeLayerChildren ()
