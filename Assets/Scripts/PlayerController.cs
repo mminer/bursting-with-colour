@@ -3,91 +3,133 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour 
 {
-	public float Gravity = 21f;	 //downward force
-	public float TerminalVelocity = 20f;	//max downward speed
-	public float JumpSpeed = 6f;
-	public float MoveSpeed = 10f;
+	public int playerNumber = 1;
+	public float gravity = 21f;	 			// downward force
+	public float terminalVelocity = 20f;	// max downward speed
+	public float jumpSpeed = 6f;			// jump height
+	public float moveSpeed = 10f;
 	
-	public Vector3 MoveVector;
-	public float VerticalVelocity;
+	public Vector3 moveVector;
+	public float verticalVelocity;
 	
 	public CharacterController CharacterController;
+
+	string jumpInputName;
+	string moveInputName;
+	string aInputName;
+	string bInputName;
+	string xInputName;
+	string yInputName;
 	
 	// Use this for initialization
 	void Awake () 
 	{
-		CharacterController = gameObject.GetComponent("CharacterController") as CharacterController;
+		DetermineInputs();
+	}
+
+	void DetermineInputs ()
+	{
+		var suffix = "Win";
+
+		#if UNITY_STANDALONE_OSX
+		suffix = "Mac";
+		#endif
+
+		jumpInputName = GenerateInputName("L_YAxis_", suffix);
+		moveInputName = GenerateInputName("L_XAxis_", suffix);
+		aInputName = GenerateInputName("A_", suffix);
+		bInputName = GenerateInputName("B_", suffix);
+		xInputName = GenerateInputName("X_", suffix);
+		yInputName = GenerateInputName("Y_", suffix);
+	}
+
+	string GenerateInputName (string prefix, string suffix)
+	{
+		return prefix + playerNumber + suffix;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		checkMovement();
+		CheckMovement();
 		HandleActionInput();
-		processMovement();
+		ProcessMovement();
+	}
+
+	void CheckColourSwitch ()
+	{
+		if (Input.GetButtonDown(aInputName)) {
+			//LayerManager.ToggleLayer(this, LayerManager.gr
+		} else if (Input.GetButtonDown(bInputName)) {
+
+		} else if (Input.GetButtonDown(xInputName)) {
+
+		} else if (Input.GetButtonDown(yInputName)) {
+
+		}
 	}
 	
-	void checkMovement()
+	void CheckMovement()
 	{
 		//move l/r
 		var deadZone = 0.1f;
-		VerticalVelocity = MoveVector.y;
-		MoveVector = Vector3.zero;
+		verticalVelocity = moveVector.y;
+		moveVector = Vector3.zero;
 
-		if(Input.GetAxis("L_XAxis_1_Mac") > deadZone || Input.GetAxis("L_XAxis_1_Mac") < -deadZone){
-			MoveVector += new Vector3(Input.GetAxis("L_XAxis_1_Mac"), 0, 0);
+		if (Input.GetAxis(moveInputName) > deadZone || Input.GetAxis(moveInputName) < -deadZone) {
+			moveVector += new Vector3(Input.GetAxis(moveInputName), 0, 0);
 		}
 	}
 	
 	void HandleActionInput()
 	{
-		if (Input.GetAxis("L_YAxis_1_Mac") < 0){
-			jump();
+		if (Input.GetAxis(jumpInputName) < 0) {
+			Jump();
 		}
 	}
 	
-	void processMovement()
+	void ProcessMovement()
 	{
 		//transform moveVector into world-space relative to character rotation
-		MoveVector = transform.TransformDirection(MoveVector);
+		moveVector = transform.TransformDirection(moveVector);
 		
 		//normalize moveVector if magnitude > 1
-		if(MoveVector.magnitude > 1){
-			MoveVector = Vector3.Normalize(MoveVector);
+		if (moveVector.magnitude > 1) {
+			moveVector = Vector3.Normalize(moveVector);
 		}
 		
 		//multiply moveVector by moveSpeed
-		MoveVector *= MoveSpeed;
+		moveVector *= moveSpeed;
 		
 		//reapply vertical velocity to moveVector.y
-		MoveVector = new Vector3(MoveVector.x, VerticalVelocity, MoveVector.z);
+		moveVector = new Vector3(moveVector.x, verticalVelocity, moveVector.z);
 		
 		//apply gravity
-		applyGravity();
+		ApplyGravity();
 		
 		//move character in world-space
-		CharacterController.Move(MoveVector * Time.deltaTime);
+		CharacterController.Move(moveVector * Time.deltaTime);
 	}
 	
-	void applyGravity() 
+	void ApplyGravity() 
 	{
-		if (MoveVector.y > -TerminalVelocity) {
-			var x = MoveVector.x;
-			var y = MoveVector.y - Gravity * Time.deltaTime;
-			var z = MoveVector.z;
+		if (moveVector.y > -terminalVelocity) {
+			var x = moveVector.x;
+			var y = moveVector.y - gravity * Time.deltaTime;
+			var z = moveVector.z;
 
-			MoveVector = new Vector3(x, y, z);
+			moveVector = new Vector3(x, y, z);
 		}
 
-		if(CharacterController.isGrounded && MoveVector.y < -1){
-			MoveVector = new Vector3(MoveVector.x, (-1), MoveVector.z);
+		if (CharacterController.isGrounded && moveVector.y < -1) {
+			moveVector = new Vector3(moveVector.x, (-1), moveVector.z);
 		}
 	}
 	
-	public void jump()
+	public void Jump()
 	{
-		if (CharacterController.isGrounded){
-			VerticalVelocity = JumpSpeed;
+		if (CharacterController.isGrounded) {
+			verticalVelocity = jumpSpeed;
 		}
 	}
 }
