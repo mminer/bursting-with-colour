@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
 	public int mapHeight = 100;
 	public int safeZoneWidth = 5;
 	public float chanceOfBlankTile = 0.2f;
+	public float chanceOfNeighbourColour = 0.5f;
 
 	void Start ()
 	{
@@ -70,6 +71,8 @@ public class LevelManager : MonoBehaviour
 	void GenerateTiles ()
 	{
 		for (int y = 0; y < mapHeight; y++) {
+			LayerColor lastColor = LayerColor.Solid;
+
 			for (int x = 0; x < gridWidth; x++) {
 				// Only create a new tile a specified percent of the time.
 
@@ -77,10 +80,22 @@ public class LevelManager : MonoBehaviour
 					continue;
 				}
 
+				LayerColor tileColor = LayerColor.Solid;
+
+				// Randomly decide if this tile should share its neighbours color
+				if (lastColor != LayerColor.Solid) {
+					if (Random.Range(0f, 1f) < chanceOfNeighbourColour) {
+						tileColor = lastColor;
+					}
+				}
 
 				// Randomly decide which color to make tile.
-				var color = (LayerColor)Random.Range(0, LayerManager.layers.Count - 1);
-				CreateTile(color, x, y);
+				if (tileColor == LayerColor.Solid) {
+					tileColor = (LayerColor)Random.Range(0, LayerManager.layers.Count - 1);
+					lastColor = tileColor;
+				}
+
+				CreateTile(tileColor, x, y);
 			}
 		}
 	}
