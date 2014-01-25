@@ -63,11 +63,6 @@ public class LayerManager : MonoBehaviour
 			{ LayerColor.Yellow, layerComponents.First(layer => layer.color == LayerColor.Yellow) },
 			{ LayerColor.Red, layerComponents.First(layer => layer.color == LayerColor.Red) },
 		};
-
-		// Ensure all layers start out disabled.
-		foreach (var layer in layers.Values) {
-			layer.active = false;
-		}
 	}
 
 	public static void AssignLayer (Player player)
@@ -77,9 +72,9 @@ public class LayerManager : MonoBehaviour
 			.Select(kvp => kvp.Value)
 			.ToArray();
 
-		var layer2 = inactiveLayers[Random.Range(0, inactiveLayers.Length)];
-		layer2.active = true;
-		player.layer = layer2;
+		var layer = inactiveLayers[Random.Range(0, inactiveLayers.Length)];
+		layer.active = true;
+		player.layer = layer;
 	}
 
 	public static void ToggleLayer (GameObject playerGameObject, LayerColor newLayerColor)
