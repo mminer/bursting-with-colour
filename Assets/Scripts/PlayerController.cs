@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 	public Vector3 moveVector;
 	public float verticalVelocity;
 	
-	public CharacterController CharacterController;
+	public CharacterController characterController;
 
 	string jumpInputName;
 	string moveInputName;
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
 		ApplyGravity();
 		
 		//move character in world-space
-		CharacterController.Move(moveVector * Time.deltaTime);
+		characterController.Move(moveVector * Time.deltaTime);
 	}
 	
 	void ApplyGravity() 
@@ -121,14 +121,14 @@ public class PlayerController : MonoBehaviour
 			moveVector = new Vector3(x, y, z);
 		}
 
-		if (CharacterController.isGrounded && moveVector.y < -1) {
+		if (characterController.isGrounded && moveVector.y < -1) {
 			moveVector = new Vector3(moveVector.x, (-1), moveVector.z);
 		}
 	}
 	
 	public void Jump()
 	{
-		if (CharacterController.isGrounded) {
+		if (characterController.isGrounded) {
 			verticalVelocity = jumpSpeed;
 		}
 	}
