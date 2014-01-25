@@ -1151,7 +1151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f707eb1e5814a3bb123bed49d59fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNumber: 1
+  playerNumber: 2
   Gravity: 21
   TerminalVelocity: 20
   JumpSpeed: 10
@@ -1201,6 +1201,10 @@ Prefab:
     - target: {fileID: 11400000, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
+      propertyPath: playerNumber
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
@@ -1501,45 +1505,6 @@ Prefab:
   m_RootGameObject: {fileID: 282617773}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1 &2090039501
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2090039503}
-  - 65: {fileID: 2090039502}
-  m_Layer: 0
-  m_Name: Ground
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &2090039502
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2090039501}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 12.9200001, y: 1, z: 5.44000006}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &2090039503
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2090039501}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
 --- !u!1 &2131743808
 GameObject:
   m_ObjectHideFlags: 0
