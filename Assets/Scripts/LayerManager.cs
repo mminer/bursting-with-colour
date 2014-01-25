@@ -16,13 +16,15 @@ public class LayerManager : MonoBehaviour
 
 	void Awake ()
 	{
-		layers = GetComponentsInChildren<Layer>();
+		layers = GameObject.FindGameObjectsWithTag("Layer")
+			.Select(go => go.GetComponent<Layer>())
+			.ToArray();
 
 		// Find named layers.
-		blueLayer = layers.First(layer => layer.name == "Blue");
-		greenLayer = layers.First(layer => layer.name == "Green");
-		redLayer = layers.First(layer => layer.name == "Red");
-		yellowLayer = layers.First(layer => layer.name == "Yellow");
+		blueLayer = layers.First(layer => layer.color == LayerColor.Blue);
+		greenLayer = layers.First(layer => layer.color == LayerColor.Green);
+		redLayer = layers.First(layer => layer.color == LayerColor.Red);
+		yellowLayer = layers.First(layer => layer.color == LayerColor.Yellow);
 
 		// Ensure all layers start out disabled.
 		foreach (var layer in layers) {
