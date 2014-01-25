@@ -85,10 +85,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 055fb038006b1cf468df5f82c75f5109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  continuousCameraMove: 1
+  continuousCameraMove: 0
   cameraSpeed: .300000012
   delayBeforeStart: 5
-  followTopPlayer: 0
+  followTopPlayer: 1
   followPlayerMargin: 0
   player1: {fileID: 0}
   player2: {fileID: 0}

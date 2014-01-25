@@ -43,7 +43,7 @@ public class CameraController : MonoBehaviour {
 		{
 			UpdateFarthestPlayer ();
 			if ((transform.position.y + followPlayerMargin) < farthestPlayer)
-				transform.Translate(0f, (transform.position.y - farthestPlayer), 0f);
+				transform.position = new Vector3(transform.position.x, farthestPlayer, transform.position.z);
 		}
 	}
 
@@ -55,5 +55,6 @@ public class CameraController : MonoBehaviour {
 		if (player2 != null)
 			if (player2.transform.position.y > farthestPlayer)
 				farthestPlayer = player2.transform.position.y;
+		Debug.Log ("FartherPlayer Y is "+ farthestPlayer);
 	}
 }
