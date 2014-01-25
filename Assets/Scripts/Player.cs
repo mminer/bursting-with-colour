@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 	{
 		// Temporary:
 
+		/*
 		if (Input.GetKey(KeyCode.Alpha1) && !LayerManager.blueLayer.active) {
 			LayerManager.ToggleLayer(this, LayerManager.blueLayer);
 		}
@@ -29,5 +30,6 @@ public class Player : MonoBehaviour
 		if (Input.GetKey(KeyCode.Alpha4) && !LayerManager.yellowLayer.active) {
 			LayerManager.ToggleLayer(this, LayerManager.yellowLayer);
 		}
+		*/
 	}
 }

@@ -21,34 +21,14 @@ public class LayerManager : MonoBehaviour
 
 	#endregion
 
-	public static Layer blueLayer { get; private set;}
-	public static Layer greenLayer { get; private set; }
-	public static Layer redLayer { get; private set; }
-	public static Layer yellowLayer { get; private set; }
-
+	public static Dictionary<LayerColor, Layer> layers { get; private set; }
 	public static Dictionary<LayerColor, Material> activeMaterials { get; private set; }
 	public static Dictionary<LayerColor, Material> inactiveMaterials { get; private set; }
-
-	static Layer[] layers;
 
 	void Awake ()
 	{
 		SetMaterials();
-
-		layers = GameObject.FindGameObjectsWithTag("Layer")
-			.Select(go => go.GetComponent<Layer>())
-			.ToArray();
-
-		// Find named layers.
-		blueLayer = layers.First(layer => layer.color == LayerColor.Blue);
-		greenLayer = layers.First(layer => layer.color == LayerColor.Green);
-		redLayer = layers.First(layer => layer.color == LayerColor.Red);
-		yellowLayer = layers.First(layer => layer.color == LayerColor.Yellow);
-
-		// Ensure all layers start out disabled.
-		foreach (var layer in layers) {
-			layer.active = false;
-		}
+		SetLayers();
 	}
 
 	void SetMaterials ()
@@ -70,12 +50,36 @@ public class LayerManager : MonoBehaviour
 		};
 	}
 
+	void SetLayers ()
+	{
+		var layerComponents = GameObject.FindGameObjectsWithTag("Layer")
+			.Select(go => go.GetComponent<Layer>())
+			.ToArray();
+
+		layers = new Dictionary<LayerColor, Layer>()
+		{
+			{ LayerColor.Blue, layerComponents.First(layer => layer.color == LayerColor.Blue) },
+			{ LayerColor.Green, layerComponents.First(layer => layer.color == LayerColor.Green) },
+			{ LayerColor.Yellow, layerComponents.First(layer => layer.color == LayerColor.Yellow) },
+			{ LayerColor.Red, layerComponents.First(layer => layer.color == LayerColor.Red) },
+		};
+
+		// Ensure all layers start out disabled.
+		foreach (var layer in layers.Values) {
+			layer.active = false;
+		}
+	}
+
 	public static void AssignLayer (Player player)
 	{
-		var inactiveLayers = GetInactiveLayers();
-		var layer = inactiveLayers[Random.Range(0, inactiveLayers.Length)];
-		layer.active = true;
-		player.layer = layer;
+		var inactiveLayers = layers
+			.Where(kvp => !kvp.Value.active)
+			.Select(kvp => kvp.Value)
+			.ToArray();
+
+		var layer2 = inactiveLayers[Random.Range(0, inactiveLayers.Length)];
+		layer2.active = true;
+		player.layer = layer2;
 	}
 
 	public static void ToggleLayer (Player player, Layer newLayer)
@@ -92,12 +96,5 @@ public class LayerManager : MonoBehaviour
 		oldLayer.active = false;
 		newLayer.active = true;
 		player.layer = newLayer;
-	}
-
-
-	static Layer[] GetInactiveLayers ()
-	{
-		var inactiveLayers = layers.Where(layer => !layer.active).ToArray();
-		return inactiveLayers;
 	}
 }
