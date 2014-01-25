@@ -77,6 +77,7 @@ MonoBehaviour:
   inactiveRedMaterial: {fileID: 2100000, guid: 957d1ffe6600c45f6be1e9442db18290, type: 2}
   inactiveYellowMaterial: {fileID: 2100000, guid: 4b2ff6893085348febe7ebd7df5621d3,
     type: 2}
+  solidGreyMaterial: {fileID: 2100000, guid: 020e90e8b32ec354e9febfb083c2a26b, type: 2}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -115,6 +116,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tile: {fileID: 400000, guid: 3ec53154a0b734cc5816bacd0b90bee9, type: 2}
   gridWidth: 20
+  mapHeight: 100
+  safeZoneWidth: 5
+  chanceOfBlankTile: .300000012
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
