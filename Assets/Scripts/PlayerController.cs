@@ -35,17 +35,17 @@ public class PlayerController : MonoBehaviour
 		suffix = "Mac";
 		#endif
 
-		jumpInputName = GenerateInputName("L_YAxis_", suffix);
-		moveInputName = GenerateInputName("L_XAxis_", suffix);
-		aInputName = GenerateInputName("A_", suffix);
-		bInputName = GenerateInputName("B_", suffix);
-		xInputName = GenerateInputName("X_", suffix);
-		yInputName = GenerateInputName("Y_", suffix);
+		jumpInputName = GenerateInputName("L_YAxis", suffix);
+		moveInputName = GenerateInputName("L_XAxis", suffix);
+		aInputName = GenerateInputName("A", suffix);
+		bInputName = GenerateInputName("B", suffix);
+		xInputName = GenerateInputName("X", suffix);
+		yInputName = GenerateInputName("Y", suffix);
 	}
 
 	string GenerateInputName (string prefix, string suffix)
 	{
-		return prefix + playerNumber + suffix;
+		return prefix + "_" + playerNumber + "_" + suffix;
 	}
 	
 	// Update is called once per frame
@@ -59,13 +59,13 @@ public class PlayerController : MonoBehaviour
 	void CheckColourSwitch ()
 	{
 		if (Input.GetButtonDown(aInputName)) {
-			//LayerManager.ToggleLayer(this, LayerManager.gr
+			LayerManager.ToggleLayer(gameObject, LayerColor.Green);
 		} else if (Input.GetButtonDown(bInputName)) {
-
+			LayerManager.ToggleLayer(gameObject, LayerColor.Red);
 		} else if (Input.GetButtonDown(xInputName)) {
-
+			LayerManager.ToggleLayer(gameObject, LayerColor.Blue);
 		} else if (Input.GetButtonDown(yInputName)) {
-
+			LayerManager.ToggleLayer(gameObject, LayerColor.Yellow);
 		}
 	}
 	

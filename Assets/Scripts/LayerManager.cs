@@ -84,14 +84,14 @@ public class LayerManager : MonoBehaviour
 
 	public static void ToggleLayer (GameObject playerGameObject, LayerColor newLayerColor)
 	{
+		var player = playerGameObject.GetComponent<Player>();
+		var oldLayer = player.layer;
+		var newLayer = layers[newLayerColor];
+
 		if (newLayer.active) {
 			Debug.LogWarning("Trying to switch to layer that's already active.");
 			return;
 		}
-
-		var player = playerGameObject.GetComponent<Player>();
-		var oldLayer = player.layer;
-		var newLayer = layers[newLayerColor];
 
 		Debug.Log(string.Format("Toggling layer from {0} to {1}.", oldLayer.color, newLayer.color));
 
