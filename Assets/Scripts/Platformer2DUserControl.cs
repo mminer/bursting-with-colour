@@ -3,7 +3,7 @@
 [RequireComponent(typeof(PlatformerCharacter2D))]
 public class Platformer2DUserControl : MonoBehaviour 
 {
-	public int playerNumber = 1;
+	private Player player;
 	private PlatformerCharacter2D character;
     private bool jump;
 	
@@ -17,6 +17,7 @@ public class Platformer2DUserControl : MonoBehaviour
 	void Awake() 
 	{
 		character = GetComponent<PlatformerCharacter2D>();
+		player = GetComponent<Player>();
 		DetermineInputs();
 	}
 
@@ -61,7 +62,7 @@ public class Platformer2DUserControl : MonoBehaviour
 
 	string GenerateInputName (string prefix, string suffix)
 	{
-		return prefix + "_" + playerNumber + "_" + suffix;
+		return prefix + "_" + player.playerID + "_" + suffix;
 	}
 
 	void CheckColourSwitch ()
