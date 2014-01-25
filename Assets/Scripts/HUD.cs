@@ -7,6 +7,6 @@ public class HUD : MonoBehaviour
 {
 	void OnGUI ()
 	{
-		GUILayout.Label("Lives: " + Globals.instance.playerLives);
+		GUILayout.Label("Lives: " + PlayerManager.lives);
 	}
 }
