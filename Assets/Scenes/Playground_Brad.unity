@@ -111,8 +111,8 @@ MonoBehaviour:
   delayBeforeStart: 5
   followTopPlayer: 1
   followPlayerMargin: 0
-  player1: {fileID: 1545248597}
-  player2: {fileID: 0}
+  player1: {fileID: 1818798001}
+  player2: {fileID: 1545248597}
 --- !u!81 &43784302
 AudioListener:
   m_ObjectHideFlags: 0
@@ -444,6 +444,10 @@ Prefab:
     - target: {fileID: 11400000, guid: 0fb68f004e694864abddf878dd010d68, type: 2}
       propertyPath: player1
       value: 
+      objectReference: {fileID: 1818798001}
+    - target: {fileID: 11400000, guid: 0fb68f004e694864abddf878dd010d68, type: 2}
+      propertyPath: player2
+      value: 
       objectReference: {fileID: 1545248597}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0fb68f004e694864abddf878dd010d68, type: 2}
@@ -723,7 +727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
-  jumpForce: 400
+  jumpForce: 900
   crouchSpeed: .25
   airControl: 1
   whatIsGround:
@@ -921,7 +925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
-  jumpForce: 400
+  jumpForce: 900
   crouchSpeed: .25
   airControl: 1
   whatIsGround:

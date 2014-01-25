@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
-  jumpForce: 400
+  jumpForce: 900
   crouchSpeed: .25
   airControl: 1
   whatIsGround:
