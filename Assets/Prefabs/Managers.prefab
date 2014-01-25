@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400006}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -63,6 +64,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aff47b6cb42da4a81bf5f288d63cdf87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c097eaa32429404ba9dd9fcd6a49a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1Jump: 0
+  player1Left: 0
+  player1Right: 0
+  player1pressA: 0
+  player1pressB: 0
+  player1pressX: 0
+  player1pressY: 0
+  player2Jump: 0
+  player2Left: 0
+  player2Right: 0
+  player2pressA: 0
+  player2pressB: 0
+  player2pressX: 0
+  player2pressY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
