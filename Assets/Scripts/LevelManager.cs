@@ -5,7 +5,7 @@ using UnityEngine;
 /// </summary>
 public class LevelManager : MonoBehaviour
 {
-	public Transform tile;
+	public Tile tile;
 	public int gridWidth = 20;
 	public int mapHeight = 100;
 	public int safeZoneWidth = 5;
@@ -113,8 +113,10 @@ public class LevelManager : MonoBehaviour
 	void CreateTile (LayerColor color, int x, int y)
 	{
 		var position = new Vector2(x, y);
-		var newTile = Instantiate(tile, position, Quaternion.identity) as Transform;
-		newTile.parent = LayerManager.layers[color].transform;
+		var newTile = Instantiate(tile, position, Quaternion.identity) as Tile;
+		var layer = LayerManager.layers[color];
+		newTile.layer = layer;
+		newTile.transform.parent = layer.transform;
 	}
 
 	static void InitializeLayerChildren ()
