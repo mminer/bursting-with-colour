@@ -38,11 +38,11 @@ public class LayerManager : MonoBehaviour
 		var newLayer = layers[newLayerColor];
 
 		if (newLayer.active) {
-			Debug.LogWarning("Trying to switch to layer that's already active.");
+			//Debug.LogWarning("Trying to switch to layer that's already active.");
 			return;
 		}
 
-		Debug.Log(string.Format("Toggling layer from {0} to {1}.", oldLayer.color, newLayer.color));
+		//Debug.Log(string.Format("Toggling layer from {0} to {1}.", oldLayer.color, newLayer.color));
 
 		oldLayer.active = false;
 		newLayer.active = true;

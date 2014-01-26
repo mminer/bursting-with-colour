@@ -21,17 +21,15 @@ public class PlayerDeath : MonoBehaviour {
 			ParticleSystem particlesPs = particlesGo.GetComponent<ParticleSystem>();
 			if (particlesPs != null)
 				particlesPs.startColor = color;
-			else
-				Debug.Log ("Couldn't find the particle system!");
+
 			//set the light flare color to match
 			ParticleSystem childParticles = particlesGo.transform.GetChild(0).GetComponent<ParticleSystem>();
 			if (childParticles != null)
 			{
-				Debug.Log ("Setting " + childParticles.gameObject.name + " to " + color);
+				//Debug.Log ("Setting " + childParticles.gameObject.name + " to " + color);
 				childParticles.startColor = color;
 			}
-			else 
-				Debug.Log ("Couldn't find the child particles.");
+
 			//destroy the player
 			Destroy (gameObject);
 		}
