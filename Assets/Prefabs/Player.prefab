@@ -17,7 +17,6 @@ GameObject:
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400006}
-  - 114: {fileID: 11400008}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -142,7 +141,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .403018743, z: 0}
+  m_LocalPosition: {x: 0, y: .294016033, z: 0}
   m_LocalScale: {x: .0962178633, y: .189680129, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -243,7 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
-  jumpForce: 900
+  jumpForce: 250
   crouchSpeed: .25
   airControl: 1
   whatIsGround:
@@ -261,17 +260,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particles: {fileID: 100002, guid: 99b86e3c47852d847bbbb8f44a358b17, type: 2}
---- !u!114 &11400008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd355afba79e69847ad78a01427049b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
