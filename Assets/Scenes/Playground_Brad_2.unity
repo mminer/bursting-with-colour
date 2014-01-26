@@ -822,6 +822,8 @@ GameObject:
   - 114: {fileID: 1122582934}
   - 114: {fileID: 1122582937}
   - 114: {fileID: 1122582940}
+  - 82: {fileID: 1122582942}
+  - 114: {fileID: 1122582941}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -841,6 +843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 358dbecdd8cee45e5b6bd6f5d27d0439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guiSkin: {fileID: 11400000, guid: 69151c6963671430ea199deda32a4694, type: 2}
 --- !u!114 &1122582935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -934,6 +937,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a238c01cec4243f09443830d79410a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1122582941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: f1dbb2bf307ec4498bd761ceb5406c8e,
+    type: 2}
+  m_PrefabInternal: {fileID: 131658396}
+  m_GameObject: {fileID: 1122582933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157455edfba28486caea92df4dd07e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchEffect: {fileID: 8300000, guid: c5c8cf9b8df5f4865a40a0aacd21452c, type: 3}
+--- !u!82 &1122582942
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200000, guid: f1dbb2bf307ec4498bd761ceb5406c8e,
+    type: 2}
+  m_PrefabInternal: {fileID: 131658396}
+  m_GameObject: {fileID: 1122582933}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: .32100001
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1143761954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,7 +1215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1551218294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1340,7 +1415,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
