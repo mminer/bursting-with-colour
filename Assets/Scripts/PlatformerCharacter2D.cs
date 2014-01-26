@@ -3,10 +3,10 @@
 public class PlatformerCharacter2D : MonoBehaviour 
 {
 	bool facingRight = true;							// For determining which way the player is currently facing.
-
+	
 	[SerializeField] float maxSpeed = 10f;				// The fastest the player can travel in the x axis.
 	[SerializeField] float jumpForce = 400f;			// Amount of force added when the player jumps.	
-
+	
 	[Range(0, 1)]
 	[SerializeField] float crouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
 	
@@ -18,12 +18,12 @@ public class PlatformerCharacter2D : MonoBehaviour
 	bool grounded = false;								// Whether or not the player is grounded.
 	Transform ceilingCheck;								// A position marking where to check for ceilings
 	Transform airControlCheck;							// A position marking where to check if the player is colliding in the air.
-	float airRadius = .8f;								// Radius of the overlap circle to determine if air control should be lost
+	float airRadius = .7f;								// Radius of the overlap circle to determine if air control should be lost
 	bool loseAirControl;								// Boolean to take away air control abilities
 	float ceilingRadius = .01f;							// Radius of the overlap circle to determine if the player can stand up
 	Animator anim;										// Reference to the player's animator component.
-
-    void Awake ()
+	
+	void Awake ()
 	{
 		// Setting up references.
 		groundCheck = transform.Find("GroundCheck");
@@ -31,20 +31,21 @@ public class PlatformerCharacter2D : MonoBehaviour
 		airControlCheck = transform.Find("AirControlCheck");
 		anim = GetComponent<Animator>();
 	}
-
-
+	
+	
 	void FixedUpdate ()
 	{
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundedRadius, whatIsGround);
 		anim.SetBool("Ground", grounded);
-
+		
 		loseAirControl = Physics2D.OverlapCircle(airControlCheck.position, airRadius, whatIsGround);
-
+		Debug.Log("Air Control: " + !loseAirControl);
+		
 		// Set the vertical animation
 		anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
 	}
-
+	
 	public void Move (float move, bool crouch, bool jump)
 	{
 		// If crouching, check to see if the character can stand up
@@ -54,18 +55,18 @@ public class PlatformerCharacter2D : MonoBehaviour
 				crouch = true;
 			}
 		}
-
+		
 		// Set whether or not the character is crouching in the animator
 		anim.SetBool("Crouch", crouch);
-
+		
 		//only control the player if grounded or airControl is turned on
 		if (grounded || (airControl && !loseAirControl)) {
 			// Reduce the speed if crouching by the crouchSpeed multiplier
 			move = (crouch ? move * crouchSpeed : move);
-
+			
 			// The Speed animator parameter is set to the absolute value of the horizontal input.
 			anim.SetFloat("Speed", Mathf.Abs(move));
-
+			
 			// Move the character
 			rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
 			
@@ -73,26 +74,26 @@ public class PlatformerCharacter2D : MonoBehaviour
 			if (move > 0 && !facingRight) {
 				// ... flip the player.
 				Flip();
-			// Otherwise if the input is moving the player left and the player is facing right...
+				// Otherwise if the input is moving the player left and the player is facing right...
 			} else if(move < 0 && facingRight) {
 				// ... flip the player.
 				Flip();
 			}
 		}
-
-        // If the player should jump...
-        if (grounded && jump) {
+		
+		// If the player should jump...
+		if (grounded && jump) {
 			Jump();
-        }
+		}
 	}
-
+	
 	void Jump ()
 	{
 		// Add a vertical force to the player.
 		anim.SetBool("Ground", false);
 		rigidbody2D.AddForce(new Vector2(0f, jumpForce));
 	}
-
+	
 	
 	void Flip ()
 	{
