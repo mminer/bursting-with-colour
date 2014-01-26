@@ -40,7 +40,6 @@ public class PlatformerCharacter2D : MonoBehaviour
 		anim.SetBool("Ground", grounded);
 		
 		loseAirControl = Physics2D.OverlapCircle(airControlCheck.position, airRadius, whatIsGround);
-		Debug.Log("Air Control: " + !loseAirControl);
 		
 		// Set the vertical animation
 		anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
