@@ -22,7 +22,6 @@ public class HUD : MonoBehaviour
 	void OnGUI ()
 	{
 		GUI.skin = guiSkin;
-		//ShowLives();
 		ShowScore();
 
 		if (PlayerManager.gameOver) {
@@ -30,12 +29,9 @@ public class HUD : MonoBehaviour
 		}
 	}
 
-	void ShowLives ()
-	{
-		GUILayout.Label("Best: " + ScoreManager.highScore);}
-
 	void ShowScore ()
 	{
+		GUILayout.Label("Best: " + ScoreManager.highScore);
 		GUILayout.Label("Score: " + ScoreManager.score);
 	}
 

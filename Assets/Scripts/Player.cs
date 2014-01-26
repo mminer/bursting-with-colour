@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
 	void Start ()
 	{
 		LayerManager.AssignLayer(this);
-		Debug.Log("Starting player on layer: " + layer.color);
+//		Debug.Log("Starting player on layer: " + layer.color);
 
 		p1Label.SetActive(playerID == 1);
 		p2Label.SetActive(playerID == 2);
