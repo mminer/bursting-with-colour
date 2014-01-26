@@ -8,6 +8,7 @@ public class Tile : MonoBehaviour
 	{
 		collider2D.enabled = true;
 		renderer.material.color = ColorManager.activeColors[layer.color];
+		animation.Play();
 	}
 
 	public void Disable ()
