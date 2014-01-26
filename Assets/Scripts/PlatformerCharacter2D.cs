@@ -18,8 +18,10 @@ public class PlatformerCharacter2D : MonoBehaviour
 	bool grounded = false;								// Whether or not the player is grounded.
 	Transform ceilingCheck;								// A position marking where to check for ceilings
 	Transform airControlCheck;							// A position marking where to check if the player is colliding in the air.
-	float airRadius = .65f;								// Radius of the overlap circle to determine if air control should be lost
-	bool loseAirControl;								// Boolean to take away air control abilities
+	float airRadius = .4f;								// Radius of the overlap circle to determine if air control should be lost
+	bool loseAirControl;
+	bool loseAirControlRight;								// Boolean to take away air control abilities
+	bool loseAirControlLeft;
 	float ceilingRadius = .01f;							// Radius of the overlap circle to determine if the player can stand up
 	Animator anim;										// Reference to the player's animator component.
 	
@@ -41,6 +43,19 @@ public class PlatformerCharacter2D : MonoBehaviour
 		
 		loseAirControl = Physics2D.OverlapCircle(airControlCheck.position, airRadius, whatIsGround);
 		
+		if (loseAirControl) {
+			if (facingRight) {
+				loseAirControlRight = true;
+				loseAirControlLeft = false;
+			} else {
+				loseAirControlLeft = true;
+				loseAirControlRight = false;
+			}
+		} else {
+			loseAirControlLeft = false;
+			loseAirControlRight = false;
+		}
+		
 		// Set the vertical animation
 		anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
 	}
@@ -58,8 +73,26 @@ public class PlatformerCharacter2D : MonoBehaviour
 		// Set whether or not the character is crouching in the animator
 		anim.SetBool("Crouch", crouch);
 		
+		// If the input is moving the player right and the player is facing left...
+		if (move > 0 && !facingRight) {
+			// ... flip the player.
+			Flip();
+			// Otherwise if the input is moving the player left and the player is facing right...
+		} else if(move < 0 && facingRight) {
+			// ... flip the player.
+			Flip();
+		}
+		
 		//only control the player if grounded or airControl is turned on
-		if (grounded || (airControl && !loseAirControl)) {
+		if (grounded || (airControl && !loseAirControlRight)) {
+			if (loseAirControl && !grounded) {
+				if (move < 1 && loseAirControlLeft) {
+					return;
+				} else if (move > 0 && loseAirControlRight) {
+					return;
+				}
+			}
+			
 			// Reduce the speed if crouching by the crouchSpeed multiplier
 			move = (crouch ? move * crouchSpeed : move);
 			
@@ -68,16 +101,6 @@ public class PlatformerCharacter2D : MonoBehaviour
 			
 			// Move the character
 			rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
-			
-			// If the input is moving the player right and the player is facing left...
-			if (move > 0 && !facingRight) {
-				// ... flip the player.
-				Flip();
-				// Otherwise if the input is moving the player left and the player is facing right...
-			} else if(move < 0 && facingRight) {
-				// ... flip the player.
-				Flip();
-			}
 		}
 		
 		// If the player should jump...

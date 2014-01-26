@@ -23,7 +23,7 @@ public class AudioManager : MonoBehaviour
 
 	public static void PlayDeath ()
 	{
-		instance.audio.PlayOneShot(instance.scream);
-		instance.audio.PlayOneShot(instance.splat);
+		instance.audio.PlayOneShot(instance.scream, 0.5f);
+		instance.audio.PlayOneShot(instance.splat, 0.5f);
 	}
 }
