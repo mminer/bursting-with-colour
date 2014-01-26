@@ -13,7 +13,7 @@ public class PlayerDeath : MonoBehaviour {
 		if (particles != null)
 		{
 			//instantiate the particles
-			GameObject particlesGo = Instantiate(particles, transform.position, Quaternion.identity) as GameObject;
+			GameObject particlesGo = Instantiate(particles, transform.position + (Vector3.down * 1.3f), Quaternion.Euler(new Vector3(-90f, 0f, 0f))) as GameObject;
 
 			//set the particles color to match the player
 			UpdatePlayerColor();
@@ -24,9 +24,9 @@ public class PlayerDeath : MonoBehaviour {
 			else
 				Debug.Log ("Couldn't find the particle system!");
 			//set the light flare color to match
-			Light particlesLight = particlesGo.GetComponentInChildren<Light>();
-			if (particlesLight != null)
-				particlesLight.color = color;
+//			ParticleSystem childParticlesGo = particlesGo.GetComponentInChildren<ParticleSystem>();
+//			if (childParticles != null)
+//				childParticles.startColor = color;
 			//destroy the player
 			Destroy (gameObject);
 		}
