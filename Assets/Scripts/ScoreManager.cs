@@ -7,18 +7,19 @@ public class ScoreManager : MonoBehaviour
 	static float scorePerUnit = 1f;
 	static Transform[] playerPositions;
 	static float startingHeight;
+	public static int highScore;
 
-	void Awake ()
+	const string highScoreKey = "high_score";
+
+
+	void Awake () 
 	{
-		// Start tracking player positions
-		var players = GameObject.FindGameObjectsWithTag("Player");
-		playerPositions = new Transform[players.Length];
+		Init();
+	}
 
-		for (int i = 0; i < players.Length; i++) {
-			playerPositions[i] = players[i].transform;
-		}
-
-		startingHeight = playerPositions[0].position.y;
+	void OnLevelWasLoaded (int level)
+	{
+		Init();
 	}
 
 	void Update ()
@@ -35,6 +36,35 @@ public class ScoreManager : MonoBehaviour
 		}
 	}
 
+	static void Init ()
+	{
+		score = 0;
+		GetStartingHeight();
+		CheckHighScore();
+	}
+
+	static void CheckHighScore ()
+	{
+		if (!PlayerPrefs.HasKey(highScoreKey)) {
+			PlayerPrefs.SetInt(highScoreKey, 0);
+		}
+		
+		highScore = PlayerPrefs.GetInt(highScoreKey);
+	}
+
+	static void GetStartingHeight ()
+	{
+		// Start tracking player positions
+		var players = GameObject.FindGameObjectsWithTag("Player");
+		playerPositions = new Transform[players.Length];
+		
+		for (int i = 0; i < players.Length; i++) {
+			playerPositions[i] = players[i].transform;
+		}
+		
+		startingHeight = playerPositions[0].position.y;
+	}
+
 	public static void CheckScore (float height)
 	{
 		var calculatedScore = (height - startingHeight) * scorePerUnit;
@@ -42,6 +72,11 @@ public class ScoreManager : MonoBehaviour
 
 		if (currentScore > score) {
 			score = currentScore;
+
+			if (score > highScore) {
+				highScore = score;
+				PlayerPrefs.SetInt(highScoreKey, highScore);
+			}
 		}
 	}
 }

@@ -31,8 +31,7 @@ public class HUD : MonoBehaviour
 
 	void ShowLives ()
 	{
-		GUILayout.Label("Lives: " + PlayerManager.lives);
-	}
+		GUILayout.Label("Best: " + ScoreManager.highScore);}
 
 	void ShowScore ()
 	{
