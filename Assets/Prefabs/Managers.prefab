@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5bcffc1baad4286b8cfae32366c5da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tile: {fileID: 400000, guid: 3ec53154a0b734cc5816bacd0b90bee9, type: 2}
+  tile: {fileID: 11400000, guid: 3ec53154a0b734cc5816bacd0b90bee9, type: 2}
   gridWidth: 20
   mapHeight: 100
   safeZoneWidth: 5
