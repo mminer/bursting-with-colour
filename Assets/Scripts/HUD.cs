@@ -5,6 +5,7 @@ using UnityEngine;
 /// </summary>
 public class HUD : MonoBehaviour
 {
+	public GUISkin guiSkin;
 	Rect gameOverRect;
 
 	void Update ()
@@ -14,6 +15,7 @@ public class HUD : MonoBehaviour
 
 	void OnGUI ()
 	{
+		GUI.skin = guiSkin;
 		ShowLives();
 		ShowScore();
 
