@@ -8,9 +8,9 @@ public class HUD : MonoBehaviour
 	public GUISkin guiSkin;
 	Rect gameOverRect;
 
-	void Update ()
+	void Awake ()
 	{
-		DetermineGameOverRect();
+		gameOverRect = GetGameOverRect();
 	}
 
 	void OnGUI ()
@@ -41,29 +41,22 @@ public class HUD : MonoBehaviour
 
 	void GameOverWindow (int windowID)
 	{
-		GUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
-			GUILayout.BeginVertical(GUILayout.ExpandHeight(true));
-				GUILayout.FlexibleSpace();
+		if (GUILayout.Button("Play Again")) {
+			PlayerManager.ReplayLevel();
+		}
 
-				if (GUILayout.Button("Play Again")) {
-					PlayerManager.ReplayLevel();
-				}
-
-				if (GUILayout.Button("Quit")) {
-					Application.Quit();
-				}
-
-				GUILayout.FlexibleSpace();
-			GUILayout.EndVertical();
-		GUILayout.EndHorizontal();
+		if (GUILayout.Button("Quit")) {
+			Application.Quit();
+		}
 	}
 
-	void DetermineGameOverRect ()
+	Rect GetGameOverRect ()
 	{
-		gameOverRect = new Rect();
-		gameOverRect.width = Screen.width / 4;
-		gameOverRect.height = gameOverRect.width / 2;
-		gameOverRect.x = (Screen.width / 2) - (gameOverRect.width / 2);
-		gameOverRect.y = (Screen.height / 2) - (gameOverRect.height / 2);
+		var width = Screen.width / 2;
+		var height = Screen.height / 2;
+		var x = (Screen.width / 2) - (width );
+		var y = (Screen.height / 2) - (height);
+		var rect = new Rect(width, height, x, y);
+		return rect;
 	}
 }

@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour 
+public class PlayerController : MonoBehaviour
 {
 	public int playerNumber = 1;
 	public float Gravity = 21f;	 //downward force
 	public float TerminalVelocity = 20f;	//max downward speed
 	public float JumpSpeed = 6f;
 	public float MoveSpeed = 10f;
-	
+
 	public Vector3 MoveVector;
 	public float VerticalVelocity;
-	
+
 	public CharacterController characterController;
 
 	string jumpInputName;
@@ -20,9 +20,9 @@ public class PlayerController : MonoBehaviour
 	string bInputName;
 	string xInputName;
 	string yInputName;
-	
+
 	// Use this for initialization
-	void Awake () 
+	void Awake ()
 	{
 		DetermineInputs();
 	}
@@ -47,9 +47,9 @@ public class PlayerController : MonoBehaviour
 	{
 		return prefix + "_" + playerNumber + "_" + suffix;
 	}
-	
+
 	// Update is called once per frame
-	void Update () 
+	void Update ()
 	{
 		CheckColourSwitch();
 		CheckMovement();
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
 			LayerManager.ToggleLayer(gameObject, LayerColor.Yellow);
 		}
 	}
-	
+
 	void CheckMovement()
 	{
 		//move l/r
@@ -81,38 +81,38 @@ public class PlayerController : MonoBehaviour
 			MoveVector += new Vector3(Input.GetAxis(moveInputName),0,0);
 		}
 	}
-	
+
 	void HandleActionInput()
 	{
 		if(Input.GetAxis(jumpInputName) < 0){
 			Jump();
 		}
 	}
-	
+
 	void ProcessMovement()
 	{
 		//transform moveVector into world-space relative to character rotation
 		MoveVector = transform.TransformDirection(MoveVector);
-		
+
 		//normalize moveVector if magnitude > 1
 		if(MoveVector.magnitude > 1){
 			MoveVector = Vector3.Normalize(MoveVector);
 		}
-		
+
 		//multiply moveVector by moveSpeed
 		MoveVector *= MoveSpeed;
-		
+
 		//reapply vertical velocity to moveVector.y
 		MoveVector = new Vector3(MoveVector.x, VerticalVelocity, MoveVector.z);
-		
+
 		//apply gravity
 		ApplyGravity();
-		
+
 		//move character in world-space
 		characterController.Move(MoveVector * Time.deltaTime);
 	}
-	
-	void ApplyGravity() 
+
+	void ApplyGravity()
 	{
 		if (MoveVector.y > -TerminalVelocity) {
 			var x = MoveVector.x;
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
 			MoveVector = new Vector3(MoveVector.x, (-1), MoveVector.z);
 		}
 	}
-	
+
 	public void Jump()
 	{
 		if (characterController.isGrounded){

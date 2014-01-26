@@ -75,7 +75,7 @@ MonoBehaviour:
     m_Name: button
     m_Normal:
       m_Background: {fileID: 0}
-      m_TextColor: {r: .899999976, g: .899999976, b: .899999976, a: 1}
+      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Hover:
       m_Background: {fileID: 0}
       m_TextColor: {r: 0, g: 1, b: 0, a: 1}
@@ -108,8 +108,8 @@ MonoBehaviour:
       m_Top: 4
       m_Bottom: 4
     m_Padding:
-      m_Left: 6
-      m_Right: 6
+      m_Left: 0
+      m_Right: 0
       m_Top: 3
       m_Bottom: 3
     m_Overflow:
@@ -117,7 +117,7 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 0}
+    m_Font: {fileID: 12800000, guid: f4e710ffe32f94a45b6918e87981408b, type: 3}
     m_FontSize: 0
     m_FontStyle: 0
     m_Alignment: 4
