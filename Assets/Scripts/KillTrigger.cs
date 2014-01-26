@@ -5,8 +5,7 @@ public class KillTrigger : MonoBehaviour
 {
 	void OnTriggerEnter2D (Collider2D col)
 	{
-		if (col.gameObject.name.IndexOf("Player") >= 0)
-		{
+		if (col.CompareTag("Player")) {
 			col.gameObject.SendMessage("PlayerKilled");
 		}
 	}
