@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c28cbb91b77b76488e06ff230b2e2af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particles: {fileID: 19800000, guid: 99b86e3c47852d847bbbb8f44a358b17, type: 2}
+  particles: {fileID: 100002, guid: 99b86e3c47852d847bbbb8f44a358b17, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
