@@ -24,7 +24,7 @@ public class Platformer2DUserControl : MonoBehaviour
     void Update ()
     {
         // Read the jump input in Update so button presses aren't missed.
-        if (CrossPlatformInput.GetAxis(jumpInputName) < 0)
+        if (CrossPlatformInput.GetAxis(jumpInputName) < -0.3f)
 		{
             jump = true;
 		}

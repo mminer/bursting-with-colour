@@ -6,12 +6,14 @@ using UnityEngine;
 public class HUD : MonoBehaviour
 {
 	public GUISkin guiSkin;
+	public static GUISkin skin;
 
 	Rect screenRect;
 
 	void Awake ()
 	{
 		screenRect = new Rect(0, 0, Screen.width, Screen.height);
+		skin = guiSkin;
 	}
 
 	void Update ()
@@ -32,7 +34,6 @@ public class HUD : MonoBehaviour
 	void ShowScore ()
 	{
 		GUILayout.Label("Best: " + ScoreManager.highScore);
-		GUILayout.Label("Score: " + ScoreManager.score);
 	}
 
 	void ShowGameOver ()

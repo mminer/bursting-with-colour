@@ -34,6 +34,7 @@ public class PlayerManager : MonoBehaviour
 
 	public static void DoGameOver ()
 	{
+		ScoreManager.SetFinalScore();
 		gameOver = true;
 	}
 
