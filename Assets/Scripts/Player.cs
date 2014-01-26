@@ -46,7 +46,8 @@ public class Player : MonoBehaviour
 	{
 		var currentScale = activeLabel.transform.localScale;
 
-		if (transform.localScale.x < 0 && currentScale.x > 0) {
+		if ((transform.localScale.x < 0 && currentScale.x > 0) ||
+			(transform.localScale.x > 0 && currentScale.x < 0)) {
 			var newScale = currentScale;
 			newScale.x *= -1;
 			activeLabel.transform.localScale = newScale;
