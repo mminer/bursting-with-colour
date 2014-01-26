@@ -82,12 +82,28 @@ public class GamePadInput : MonoBehaviour {
 	{
 		//MovementLeft
 		float leftMovement = Input.GetAxis ("L_XAxis_1_Mac");
-		if (leftMovement < 0) player1Left = leftMovement;
+		if (leftMovement < 0) 
+			player1Left = leftMovement;
 		else
 		{
 			leftMovement = Input.GetAxis("L_XAxis_1_Win");
-			if (leftMovement < 0) player1Left = leftMovement;
+			if (leftMovement < 0) 
+			{
+				player1Left = leftMovement;
+				Debug.Log ("Got controller input for left movement.");
+			}
+			else
+			{
+				if (Input.GetKey ("a"))
+				{
+					player1Left = -1f;
+					Debug.Log ("Got keyboard input for left movement.");
+				}
+				else
+					Debug.Log("Got no left movement!");
+			}
 		}
+
 //		if ((Input.GetAxis ("L_XAxis_1_Mac") < 0) || (Input.GetAxis("L_XAxis_1_Win") < 0)) {
 //			player1Left = 0f;
 //		}
@@ -99,29 +115,34 @@ public class GamePadInput : MonoBehaviour {
 		{
 			leftMovement = Input.GetAxis("L_XAxis_1_Win");
 			if (rightMovement > 0) player1Right = rightMovement;
+			else
+			{
+				if (Input.GetKey (KeyCode.D))
+					player1Right = 1f;
+			}
 		}
 //		if ((Input.GetAxis ("L_XAxis_1_Mac") > 0) || (Input.GetAxis("L_XAxis_1_Win") > 0)) {
 //			Debug.Log("Player 1 Presses Right.");
 //		}
 
 		//Jump
-		if ((Input.GetAxis ("L_YAxis_1_Mac") < 0) || (Input.GetAxis("L_YAxis_1_Win") < 0)) {
+		if ((Input.GetAxis ("L_YAxis_1_Mac") < 0) || (Input.GetAxis("L_YAxis_1_Win") < 0) || (Input.GetKey(KeyCode.W))) {
 			player1Jump = true;
 		}
 		//A
-		if (Input.GetButton ("A_1_Mac") || Input.GetButton("A_1_Win")) {
+		if (Input.GetButton ("A_1_Mac") || Input.GetButton("A_1_Win") || Input.GetKeyDown(KeyCode.F)) {
 			player1pressA = true;
 		}
 		//B
-		if (Input.GetButton ("B_1_Mac") || Input.GetButton("B_1_Win")) {
+		if (Input.GetButton ("B_1_Mac") || Input.GetButton("B_1_Win") || Input.GetKeyDown(KeyCode.G)) {
 			player1pressB = true;
 		}
 		//X
-		if (Input.GetButton ("X_1_Mac") || Input.GetButton("X_1_Win")) {
+		if (Input.GetButton ("X_1_Mac") || Input.GetButton("X_1_Win") || Input.GetKeyDown(KeyCode.H)) {
 			player1pressX = true;
 		}
 		//Y
-		if (Input.GetButton ("Y_1_Mac") || Input.GetButton("Y_1_Win")) {
+		if (Input.GetButton ("Y_1_Mac") || Input.GetButton("Y_1_Win") || Input.GetKeyDown(KeyCode.J)) {
 			player1pressY = true;
 		}
 	}
@@ -135,6 +156,11 @@ public class GamePadInput : MonoBehaviour {
 		{
 			leftMovement = Input.GetAxis("L_XAxis_2_Win");
 			if (leftMovement < 0) player2Left = leftMovement;
+			else
+			{
+				if (Input.GetKey (KeyCode.LeftArrow))
+					player2Left = -1f;
+			}
 		}
 		//		if ((Input.GetAxis ("L_XAxis_2_Mac") < 0) || (Input.GetAxis("L_XAxis_2_Win") < 0)) {
 		//			player2Left = 0f;
@@ -147,29 +173,33 @@ public class GamePadInput : MonoBehaviour {
 		{
 			leftMovement = Input.GetAxis("L_XAxis_2_Win");
 			if (rightMovement > 0) player2Right = rightMovement;
+			{
+				if (Input.GetKey (KeyCode.RightArrow))
+					player2Right = 1f;
+			}
 		}
 		//		if ((Input.GetAxis ("L_XAxis_2_Mac") > 0) || (Input.GetAxis("L_XAxis_2_Win") > 0)) {
 		//			Debug.Log("Player 2 Presses Right.");
 		//		}
 		
 		//Jump
-		if ((Input.GetAxis ("L_YAxis_2_Mac") < 0) || (Input.GetAxis("L_YAxis_2_Win") < 0)) {
+		if ((Input.GetAxis ("L_YAxis_2_Mac") < 0) || (Input.GetAxis("L_YAxis_2_Win") < 0) || (Input.GetKey(KeyCode.UpArrow))) {
 			player2Jump = true;
 		}
 		//A
-		if (Input.GetButton ("A_2_Mac") || Input.GetButton("A_2_Win")) {
+		if (Input.GetButton ("A_2_Mac") || Input.GetButton("A_2_Win") || Input.GetKeyDown(KeyCode.Keypad1)) {
 			player2pressA = true;
 		}
 		//B
-		if (Input.GetButton ("B_2_Mac") || Input.GetButton("B_2_Win")) {
+		if (Input.GetButton ("B_2_Mac") || Input.GetButton("B_2_Win") || Input.GetKeyDown(KeyCode.Keypad2)) {
 			player2pressB = true;
 		}
 		//X
-		if (Input.GetButton ("X_2_Mac") || Input.GetButton("X_2_Win")) {
+		if (Input.GetButton ("X_2_Mac") || Input.GetButton("X_2_Win") || Input.GetKeyDown(KeyCode.Keypad3)) {
 			player2pressX = true;
 		}
 		//Y
-		if (Input.GetButton ("Y_2_Mac") || Input.GetButton("Y_2_Win")) {
+		if (Input.GetButton ("Y_2_Mac") || Input.GetButton("Y_2_Win") || Input.GetKeyDown(KeyCode.KeypadEnter)) {
 			player2pressY = true;
 		}
 	}
