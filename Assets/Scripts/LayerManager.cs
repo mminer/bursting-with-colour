@@ -47,5 +47,7 @@ public class LayerManager : MonoBehaviour
 		oldLayer.active = false;
 		newLayer.active = true;
 		player.layer = newLayer;
+
+		AudioManager.PlaySwitchEffect();
 	}
 }
