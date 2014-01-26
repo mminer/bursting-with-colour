@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 		get { return _layer; }
 		set {
 			_layer = value;
-			spriteRenderer.color = ColorManager.colors[value.color];
+			spriteRenderer.color = ColorManager.activeColors[value.color];
 		}
 	}
 
