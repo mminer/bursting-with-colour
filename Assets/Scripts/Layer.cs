@@ -6,9 +6,6 @@ public class Layer : MonoBehaviour
 {
 	public LayerColor color;
 
-	public Material activeMaterial { get { return LayerManager.activeMaterials[color]; } }
-	public Material inactiveMaterial { get { return LayerManager.inactiveMaterials[color]; } }
-
 	bool _active;
 	public new bool active
 	{

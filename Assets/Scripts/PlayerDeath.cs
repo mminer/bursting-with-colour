@@ -17,11 +17,11 @@ public class PlayerDeath : MonoBehaviour {
 
 	Color GetPlayerColor()
 	{
-		Color color = ColorManager.colors[LayerColor.Solid];
+		Color color = ColorManager.activeColors[LayerColor.Solid];
 
 		Player playerScript = transform.GetComponent<Player>();
 		if (playerScript != null)
-			color = ColorManager.colors[playerScript.layer.color];
+			color = ColorManager.activeColors[playerScript.layer.color];
 
 		return color;
 	}

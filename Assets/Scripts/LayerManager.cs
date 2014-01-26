@@ -7,50 +7,16 @@ using UnityEngine;
 /// </summary>
 public class LayerManager : MonoBehaviour
 {
-	#region Public Inspector Fields
-
-	public Material baseMaterial;
-
-	#endregion
-
 	public static Dictionary<LayerColor, Layer> layers { get; private set; }
-	public static Dictionary<LayerColor, Material> activeMaterials { get; private set; }
-	public static Dictionary<LayerColor, Material> inactiveMaterials { get; private set; }
-
-	const float inactiveAlpha = 0.2f;
 
 	void Awake ()
 	{
-		layers = new Dictionary<LayerColor, Layer>();
-		activeMaterials = new Dictionary<LayerColor, Material>();
-		inactiveMaterials = new Dictionary<LayerColor, Material>();
-
-		var layerComponents = GameObject.FindGameObjectsWithTag("Layer")
-			.Select(go => go.GetComponent<Layer>());
-
-		foreach (var color in System.Enum.GetValues(typeof(LayerColor)).Cast<LayerColor>()) {
-			layers[color] = layerComponents.First(layer => layer.color == color);
-			activeMaterials[color] = GetActiveMaterial(color);
-			inactiveMaterials[color] = GetInactiveMaterial(color);
-		}
+		layers = GameObject.FindGameObjectsWithTag("Layer")
+			.Select(go => go.GetComponent<Layer>())
+			.ToDictionary(layer => layer.color);
 
 		// Ensure solid "colour" is always active.
 		layers[LayerColor.Solid].active = true;
-	}
-
-	Material GetActiveMaterial (LayerColor color)
-	{
-		var material = new Material(baseMaterial);
-		material.color = ColorManager.colors[color];
-		return material;
-	}
-
-	Material GetInactiveMaterial (LayerColor color)
-	{
-		var material = new Material(baseMaterial);
-		var materialColor = ColorManager.colors[color];
-		material.color = new Color(materialColor.r, materialColor.g, materialColor.b, inactiveAlpha);
-		return material;
 	}
 
 	public static void AssignLayer (Player player)

@@ -1,9 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class ColorManager
 {
-	public static readonly Dictionary<LayerColor, Color> colors = new Dictionary<LayerColor, Color>()
+	const float inactiveAlpha = 0.2f;
+
+	public static readonly Dictionary<LayerColor, Color> activeColors = new Dictionary<LayerColor, Color>()
 	{
 		{ LayerColor.Blue,   new Color(0   / 255f, 127 / 255f, 253 / 255f) },
 		{ LayerColor.Green,  new Color(0   / 255f, 255 / 255f, 8   / 255f) },
@@ -11,4 +14,19 @@ public static class ColorManager
 		{ LayerColor.Yellow, new Color(255 / 255f, 245 / 255f, 0   / 255f) },
 		{ LayerColor.Solid,  new Color(255 / 255f, 255 / 255f, 255 / 255f) },
 	};
+
+	public static readonly Dictionary<LayerColor, Color> inactiveColors;
+
+	static ColorManager ()
+	{
+		inactiveColors = activeColors
+			.Select(kvp => new KeyValuePair<LayerColor, Color>(kvp.Key, GetFadedColor(kvp.Value)))
+			.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+	}
+
+	static Color GetFadedColor (Color color)
+	{
+		var fadedColor = new Color(color.r, color.g, color.b, inactiveAlpha);
+		return fadedColor;
+	}
 }

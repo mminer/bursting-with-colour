@@ -7,12 +7,12 @@ public class Tile : MonoBehaviour
 	public void Enable ()
 	{
 		collider2D.enabled = true;
-		renderer.material = layer.activeMaterial;
+		renderer.material.color = ColorManager.activeColors[layer.color];
 	}
 
 	public void Disable ()
 	{
 		collider2D.enabled = false;
-		renderer.material = layer.inactiveMaterial;
+		renderer.material.color = ColorManager.inactiveColors[layer.color];
 	}
 }
