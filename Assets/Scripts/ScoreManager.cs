@@ -40,8 +40,6 @@ public class ScoreManager : MonoBehaviour
 		var calculatedScore = (height - startingHeight) * scorePerUnit;
 		var currentScore = Mathf.RoundToInt(calculatedScore);
 
-		Debug.Log("Raw: " + height + " Precise: " + calculatedScore + " Rounded: " + currentScore + " ::: " +Time.time);
-
 		if (currentScore > score) {
 			score = currentScore;
 		}
