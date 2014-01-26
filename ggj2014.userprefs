@@ -1,8 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Layer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Platformer2DUserControl.cs">
     <Files>
-      <File FileName="Assets/Scripts/Layer.cs" Line="16" Column="8" />
+      <File FileName="Assets/Scripts/LevelManager.cs" Line="84" Column="5" />
+      <File FileName="Assets/Scripts/PlatformerCharacter2D.cs" Line="21" Column="22" />
+      <File FileName="Assets/Scripts/Platformer2DUserControl.cs" Line="86" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

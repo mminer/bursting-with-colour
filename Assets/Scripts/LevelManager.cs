@@ -12,6 +12,10 @@ public class LevelManager : MonoBehaviour
 	public float chanceOfBlankTile = 0.2f;
 	public float chanceOfNeighbourColour = 0.5f;
 
+	public enum Layout { Solid, Rows };
+	public Layout levelLayout;
+	int rowsBeforeSafety = 3;
+
 	void Start ()
 	{
 		GenerateBorders();
@@ -72,6 +76,12 @@ public class LevelManager : MonoBehaviour
 	{
 		for (int y = 0; y < mapHeight; y++) {
 			LayerColor lastColor = LayerColor.Solid;
+
+			if (levelLayout == Layout.Rows) {
+				if (y % rowsBeforeSafety == 0) {
+					continue;
+				}
+			}
 
 			for (int x = 0; x < gridWidth; x++) {
 				// Only create a new tile a specified percent of the time.

@@ -241,6 +241,8 @@ MonoBehaviour:
   continuousCameraMove: 0
   cameraSpeed: .300000012
   delayBeforeStart: 5
+  intervalToSpeedUp: 15
+  speedAcceleration: .200000003
   followTopPlayer: 1
   followPlayerMargin: 0
   player1: {fileID: 310524052}
@@ -421,10 +423,11 @@ Transform:
   m_GameObject: {fileID: 310524050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3, y: -3.5, z: 0}
-  m_LocalScale: {x: 1.77153289, y: 1.77153039, z: 1}
+  m_LocalScale: {x: 1.70000005, y: 1.70000005, z: 1}
   m_Children:
-  - {fileID: 783457155}
+  - {fileID: 977094396}
   - {fileID: 300226362}
+  - {fileID: 783457155}
   m_Father: {fileID: 0}
 --- !u!114 &310524053
 MonoBehaviour:
@@ -463,7 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
-  jumpForce: 900
+  jumpForce: 250
   crouchSpeed: .25
   airControl: 1
   whatIsGround:
@@ -560,6 +563,32 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: .360000014, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1551218295}
+--- !u!1 &540763808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
+  m_PrefabInternal: {fileID: 1567134247}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 540763809}
+  m_Layer: 9
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: -2065832391, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &540763809
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
+  m_PrefabInternal: {fileID: 1567134247}
+  m_GameObject: {fileID: 540763808}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -.603473186, z: 0}
+  m_LocalScale: {x: .564482868, y: .564483702, z: 1}
   m_Children: []
   m_Father: {fileID: 1551218295}
 --- !u!1001 &561266441
@@ -696,6 +725,14 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: f1dbb2bf307ec4498bd761ceb5406c8e, type: 2}
+      propertyPath: chanceOfNeighbourColour
+      value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: f1dbb2bf307ec4498bd761ceb5406c8e, type: 2}
+      propertyPath: levelLayout
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1dbb2bf307ec4498bd761ceb5406c8e, type: 2}
   m_RootGameObject: {fileID: 1122582933}
@@ -710,7 +747,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 783457155}
   m_Layer: 9
-  m_Name: GroundCheck
+  m_Name: AirControlCheck
   m_TagString: Untagged
   m_Icon: {fileID: -2065832391, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -722,6 +759,32 @@ Transform:
   m_PrefabParentObject: {fileID: 400004, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
   m_PrefabInternal: {fileID: 1990503706}
   m_GameObject: {fileID: 783457154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .149050489, y: .012602726, z: 0}
+  m_LocalScale: {x: .564482868, y: .564483702, z: 1}
+  m_Children: []
+  m_Father: {fileID: 310524052}
+--- !u!1 &977094395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
+  m_PrefabInternal: {fileID: 1990503706}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 977094396}
+  m_Layer: 9
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: -2065832391, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &977094396
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
+  m_PrefabInternal: {fileID: 1990503706}
+  m_GameObject: {fileID: 977094395}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -.603473186, z: 0}
   m_LocalScale: {x: .564482868, y: .564483702, z: 1}
@@ -851,7 +914,8 @@ MonoBehaviour:
   mapHeight: 100
   safeZoneWidth: 5
   chanceOfBlankTile: .300000012
-  chanceOfNeighbourColour: .5
+  chanceOfNeighbourColour: .25
+  levelLayout: 1
 --- !u!1 &1143761954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,7 +1141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1551218294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1085,7 +1149,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1567134247}
   m_GameObject: {fileID: 1551218293}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e108fc15d15b4406498230e3ebc1495a, type: 3}
   m_Name: 
@@ -1099,10 +1163,11 @@ Transform:
   m_GameObject: {fileID: 1551218293}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2, y: -3.5, z: 0}
-  m_LocalScale: {x: 1.77153289, y: 1.77153039, z: 1}
+  m_LocalScale: {x: 1.70000005, y: 1.70000005, z: 1}
   m_Children:
-  - {fileID: 1771040116}
+  - {fileID: 540763809}
   - {fileID: 467562692}
+  - {fileID: 1771040116}
   m_Father: {fileID: 0}
 --- !u!114 &1551218296
 MonoBehaviour:
@@ -1255,7 +1320,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
       propertyPath: playerID
@@ -1263,7 +1328,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
@@ -1309,7 +1374,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1771040116}
   m_Layer: 9
-  m_Name: GroundCheck
+  m_Name: AirControlCheck
   m_TagString: Untagged
   m_Icon: {fileID: -2065832391, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1322,7 +1387,7 @@ Transform:
   m_PrefabInternal: {fileID: 1567134247}
   m_GameObject: {fileID: 1771040115}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.603473186, z: 0}
+  m_LocalPosition: {x: .149050489, y: .012602726, z: 0}
   m_LocalScale: {x: .564482868, y: .564483702, z: 1}
   m_Children: []
   m_Father: {fileID: 1551218295}
@@ -1642,6 +1707,10 @@ Prefab:
     - target: {fileID: 100000, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
       propertyPath: m_Name
       value: Player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
+      propertyPath: jumpForce
+      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
