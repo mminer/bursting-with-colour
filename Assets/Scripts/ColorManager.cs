@@ -4,7 +4,7 @@ using System.Linq;
 
 public static class ColorManager
 {
-	const float inactiveAlpha = 0.2f;
+	const float inactiveAlpha = 0.3f;
 
 	public static readonly Dictionary<LayerColor, Color> activeColors = new Dictionary<LayerColor, Color>()
 	{

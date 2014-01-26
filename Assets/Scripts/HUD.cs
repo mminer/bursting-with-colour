@@ -16,7 +16,7 @@ public class HUD : MonoBehaviour
 	void OnGUI ()
 	{
 		GUI.skin = guiSkin;
-		ShowLives();
+		//ShowLives();
 		ShowScore();
 
 		if (PlayerManager.gameOver) {
