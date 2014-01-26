@@ -248,6 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchEffect: {fileID: 8300000, guid: c5c8cf9b8df5f4865a40a0aacd21452c, type: 3}
   scream: {fileID: 8300000, guid: 434a841ac45514f61a8ada5a89200795, type: 3}
+  splat: {fileID: 8300000, guid: cc2ca856e7ad3453dad5425ed5b17f07, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
