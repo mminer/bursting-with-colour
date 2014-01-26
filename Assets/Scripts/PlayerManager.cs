@@ -4,6 +4,7 @@ public class PlayerManager : MonoBehaviour
 {
 	public int playerLives = 2;
 	public static bool gameOver = false;
+	public static GameObject[] players;
 
 	public static int lives
 	{
@@ -18,6 +19,7 @@ public class PlayerManager : MonoBehaviour
 	void Awake ()
 	{
 		instance = this;
+		players = GameObject.FindGameObjectsWithTag("Player");
 	}
 
 	public static void LoseLife ()

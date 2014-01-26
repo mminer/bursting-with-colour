@@ -64,7 +64,15 @@ public class LevelManager : MonoBehaviour
 
 	void GenerateGround ()
 	{
-		for (int x = 0; x < gridWidth; x++) {
+		//steps
+		CreateTile(LayerColor.Blue, 5, -4);
+		CreateTile(LayerColor.Blue, 6, -4);
+		CreateTile(LayerColor.Green, 6, -3);
+		CreateTile(LayerColor.Blue, 7, -4);
+		CreateTile(LayerColor.Green, 7, -3);
+		CreateTile(LayerColor.Red, 7, -2);
+		//rest of them
+		for (int x = 8; x < gridWidth; x++) {
 			CreateTile(LayerColor.Blue,   x, -4);
 			CreateTile(LayerColor.Green,  x, -3);
 			CreateTile(LayerColor.Red,    x, -2);
