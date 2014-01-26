@@ -14,8 +14,8 @@ GameObject:
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400010}
-  - 82: {fileID: 8200000}
   - 114: {fileID: 11400012}
+  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -96,9 +96,9 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 881702a1796c8495f83a04f183e23022, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .32100001
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
