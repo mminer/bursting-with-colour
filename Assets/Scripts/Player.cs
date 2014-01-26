@@ -3,6 +3,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	public int playerID = 1;
+	public GameObject p1Label;
+	public GameObject p2Label;
 
 	SpriteRenderer spriteRenderer;
 
@@ -24,5 +26,8 @@ public class Player : MonoBehaviour
 	{
 		LayerManager.AssignLayer(this);
 		Debug.Log("Starting player on layer: " + layer.color);
+
+		p1Label.SetActive(playerID == 1);
+		p2Label.SetActive(playerID == 2);
 	}
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class HUD : MonoBehaviour
 {
 	public GUISkin guiSkin;
+
 	Rect screenRect;
 
 	void Awake ()
@@ -73,7 +74,7 @@ public class HUD : MonoBehaviour
 	void CheckPressedStart ()
 	{
 		var suffix = "Win";
-		
+
 		#if UNITY_STANDALONE_OSX
 		suffix = "Mac";
 		#endif
@@ -85,7 +86,7 @@ public class HUD : MonoBehaviour
 			Application.LoadLevel(Application.loadedLevelName);
 		}
 	}
-	
+
 	string GenerateInputName (string prefix, int playerID, string suffix)
 	{
 		return prefix + "_" + playerID + "_" + suffix;
