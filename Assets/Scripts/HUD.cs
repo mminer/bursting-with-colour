@@ -6,11 +6,15 @@ using UnityEngine;
 public class HUD : MonoBehaviour
 {
 	public GUISkin guiSkin;
-	Rect gameOverRect;
+	Rect screenRect;
+
+	void Awake ()
+	{
+		screenRect = new Rect(0, 0, Screen.width, Screen.height);
+	}
 
 	void Update ()
 	{
-		DetermineGameOverRect();
 		CheckPressedStart();
 	}
 
@@ -37,14 +41,17 @@ public class HUD : MonoBehaviour
 
 	void ShowGameOver ()
 	{
-		gameOverRect = GUILayout.Window(0, gameOverRect, GameOverWindow, "Game Over");
-	}
+		// Center vertically.
+		GUILayout.BeginArea(screenRect);
+		GUILayout.FlexibleSpace();
 
-	void GameOverWindow (int windowID)
-	{
-		GUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
-			GUILayout.BeginVertical(GUILayout.ExpandHeight(true));
-				GUILayout.FlexibleSpace();
+		// Center horizontally.
+		GUILayout.BeginHorizontal();
+		GUILayout.FlexibleSpace();
+
+			GUILayout.BeginVertical(GUI.skin.box);
+
+				GUILayout.Label("Game Over", GUI.skin.GetStyle("gameOverLabel"));
 
 				if (GUILayout.Button("Play Again")) {
 					PlayerManager.ReplayLevel();
@@ -54,18 +61,13 @@ public class HUD : MonoBehaviour
 					Application.Quit();
 				}
 
-				GUILayout.FlexibleSpace();
 			GUILayout.EndVertical();
-		GUILayout.EndHorizontal();
-	}
 
-	void DetermineGameOverRect ()
-	{
-		gameOverRect = new Rect();
-		gameOverRect.width = Screen.width / 4;
-		gameOverRect.height = gameOverRect.width / 2;
-		gameOverRect.x = (Screen.width / 2) - (gameOverRect.width / 2);
-		gameOverRect.y = (Screen.height / 2) - (gameOverRect.height / 2);
+		GUILayout.FlexibleSpace();
+		GUILayout.EndHorizontal();
+
+		GUILayout.FlexibleSpace();
+		GUILayout.EndArea();
 	}
 
 	void CheckPressedStart ()
