@@ -5,16 +5,33 @@ public class ScoreManager : MonoBehaviour
 {
 	public static int score;
 	static float scorePerUnit = 1f;
-	static Vector3 camPos;
+	static Vector3[] playerPositions;
+	static float startingHeight;
 
 	void Awake ()
 	{
-		camPos = Camera.main.transform.position;
+		// Start tracking player positions
+		var players = GameObject.FindGameObjectsWithTag("Player");
+		playerPositions = new Vector3[players.Length];
+
+		for (int i = 0; i < players.Length; i++) {
+			playerPositions[i] = players[i].transform.position;
+		}
+
+		startingHeight = playerPositions[0].y;
 	}
 
-	public static void UpdateScore ()
+	void Update ()
 	{
-		var currentScore = Mathf.RoundToInt(camPos.y * scorePerUnit);
+		// Check player positions for new best score
+		foreach (var player in playerPositions) {
+			CheckScore(player.y);
+		}
+	}
+
+	public static void CheckScore (float height)
+	{
+		var currentScore = Mathf.RoundToInt((height - startingHeight) * scorePerUnit);
 
 		if (currentScore > score) {
 			score = currentScore;
