@@ -5,33 +5,42 @@ public class ScoreManager : MonoBehaviour
 {
 	public static int score;
 	static float scorePerUnit = 1f;
-	static Vector3[] playerPositions;
+	static Transform[] playerPositions;
 	static float startingHeight;
 
 	void Awake ()
 	{
 		// Start tracking player positions
 		var players = GameObject.FindGameObjectsWithTag("Player");
-		playerPositions = new Vector3[players.Length];
+		playerPositions = new Transform[players.Length];
 
 		for (int i = 0; i < players.Length; i++) {
-			playerPositions[i] = players[i].transform.position;
+			playerPositions[i] = players[i].transform;
 		}
 
-		startingHeight = playerPositions[0].y;
+		startingHeight = playerPositions[0].position.y;
 	}
 
 	void Update ()
 	{
+		if (PlayerManager.gameOver) {
+			return;
+		}
+
 		// Check player positions for new best score
 		foreach (var player in playerPositions) {
-			CheckScore(player.y);
+			if (player != null) {
+				CheckScore(player.position.y);
+			}
 		}
 	}
 
 	public static void CheckScore (float height)
 	{
-		var currentScore = Mathf.RoundToInt((height - startingHeight) * scorePerUnit);
+		var calculatedScore = (height - startingHeight) * scorePerUnit;
+		var currentScore = Mathf.RoundToInt(calculatedScore);
+
+		Debug.Log("Raw: " + height + " Precise: " + calculatedScore + " Rounded: " + currentScore + " ::: " +Time.time);
 
 		if (currentScore > score) {
 			score = currentScore;

@@ -44,7 +44,7 @@ public class HUD : MonoBehaviour
 				GUILayout.FlexibleSpace();
 
 				if (GUILayout.Button("Play Again")) {
-					Application.LoadLevel(Application.loadedLevelName);
+					PlayerManager.ReplayLevel();
 				}
 
 				if (GUILayout.Button("Quit")) {
