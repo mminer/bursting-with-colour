@@ -15,6 +15,7 @@ GameObject:
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400010}
   - 82: {fileID: 8200000}
+  - 114: {fileID: 11400012}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -43,7 +44,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .32100001
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -102,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 358dbecdd8cee45e5b6bd6f5d27d0439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guiSkin: {fileID: 11400000, guid: 69151c6963671430ea199deda32a4694, type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,6 +181,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a238c01cec4243f09443830d79410a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157455edfba28486caea92df4dd07e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchEffect: {fileID: 8300000, guid: c5c8cf9b8df5f4865a40a0aacd21452c, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
