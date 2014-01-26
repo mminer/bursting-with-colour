@@ -8,6 +8,8 @@ public class ScoreManager : MonoBehaviour
 	static Transform[] playerPositions;
 	static float startingHeight;
 	public static int highScore;
+	static Transform scoreMarker;
+	static Transform highScoreMarker;
 
 	const string highScoreKey = "high_score";
 
@@ -41,6 +43,7 @@ public class ScoreManager : MonoBehaviour
 		score = 0;
 		GetStartingHeight();
 		CheckHighScore();
+		GetScoreMarker();
 	}
 
 	static void CheckHighScore ()
@@ -65,6 +68,13 @@ public class ScoreManager : MonoBehaviour
 		startingHeight = playerPositions[0].position.y;
 	}
 
+	static void GetScoreMarker ()
+	{
+		scoreMarker = GameObject.Find("Score Marker").transform;
+		highScoreMarker = GameObject.Find("High Score Marker").transform;
+		highScoreMarker.position = new Vector3(highScoreMarker.position.x, highScore, 0);
+	}
+
 	public static void CheckScore (float height)
 	{
 		var calculatedScore = (height - startingHeight) * scorePerUnit;
@@ -72,10 +82,12 @@ public class ScoreManager : MonoBehaviour
 
 		if (currentScore > score) {
 			score = currentScore;
+			scoreMarker.position = new Vector3(scoreMarker.position.x, height, 0);
 
 			if (score > highScore) {
 				highScore = score;
 				PlayerPrefs.SetInt(highScoreKey, highScore);
+				highScoreMarker.position = new Vector3(highScoreMarker.position.x, highScore, 0);
 			}
 		}
 	}
