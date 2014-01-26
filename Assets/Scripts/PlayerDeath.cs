@@ -8,6 +8,8 @@ public class PlayerDeath : MonoBehaviour {
 
 	public void PlayerKilled()
 	{
+		PlayerManager.LoseLife();
+
 		if (particles != null)
 		{
 			//instantiate the particles
