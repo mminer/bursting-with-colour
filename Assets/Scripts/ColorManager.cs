@@ -12,7 +12,7 @@ public static class ColorManager
 		{ LayerColor.Green,  new Color(0   / 255f, 255 / 255f, 8   / 255f) },
 		{ LayerColor.Red,    new Color(253 / 255f, 3   / 255f, 0   / 255f) },
 		{ LayerColor.Yellow, new Color(255 / 255f, 245 / 255f, 0   / 255f) },
-		{ LayerColor.Solid,  new Color(255 / 255f, 255 / 255f, 255 / 255f) },
+		{ LayerColor.Solid,  new Color(150 / 255f, 150 / 255f, 150 / 255f) },
 	};
 
 	public static readonly Dictionary<LayerColor, Color> inactiveColors;

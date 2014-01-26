@@ -6,11 +6,11 @@ using UnityEngine;
 public class HUD : MonoBehaviour
 {
 	public GUISkin guiSkin;
-	Rect gameOverRect;
+	Rect screenRect;
 
 	void Awake ()
 	{
-		gameOverRect = GetGameOverRect();
+		screenRect = new Rect(0, 0, Screen.width, Screen.height);
 	}
 
 	void OnGUI ()
@@ -36,27 +36,32 @@ public class HUD : MonoBehaviour
 
 	void ShowGameOver ()
 	{
-		gameOverRect = GUILayout.Window(0, gameOverRect, GameOverWindow, "Game Over");
-	}
+		// Center vertically.
+		GUILayout.BeginArea(screenRect);
+		GUILayout.FlexibleSpace();
 
-	void GameOverWindow (int windowID)
-	{
-		if (GUILayout.Button("Play Again")) {
-			PlayerManager.ReplayLevel();
-		}
+		// Center horizontally.
+		GUILayout.BeginHorizontal();
+		GUILayout.FlexibleSpace();
 
-		if (GUILayout.Button("Quit")) {
-			Application.Quit();
-		}
-	}
+			GUILayout.BeginVertical(GUI.skin.box);
 
-	Rect GetGameOverRect ()
-	{
-		var width = Screen.width / 2;
-		var height = Screen.height / 2;
-		var x = (Screen.width / 2) - (width );
-		var y = (Screen.height / 2) - (height);
-		var rect = new Rect(width, height, x, y);
-		return rect;
+				GUILayout.Label("Game Over", GUI.skin.GetStyle("gameOverLabel"));
+
+				if (GUILayout.Button("Play Again")) {
+					PlayerManager.ReplayLevel();
+				}
+
+				if (GUILayout.Button("Quit")) {
+					Application.Quit();
+				}
+
+			GUILayout.EndVertical();
+
+		GUILayout.FlexibleSpace();
+		GUILayout.EndHorizontal();
+
+		GUILayout.FlexibleSpace();
+		GUILayout.EndArea();
 	}
 }
