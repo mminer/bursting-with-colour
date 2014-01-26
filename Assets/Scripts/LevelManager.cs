@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
 {
 	public Tile tile;
 	public int gridWidth = 20;
-	public int mapHeight = 100;
+	public int mapHeight = 300;
 	public int safeZoneWidth = 5;
 	public float chanceOfBlankTile = 0.2f;
 	public float chanceOfNeighbourColour = 0.5f;
