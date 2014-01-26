@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 	public GameObject p1Label;
 	public GameObject p2Label;
 
+	GameObject activeLabel;
 	SpriteRenderer spriteRenderer;
 
 	Layer _layer;
@@ -27,7 +28,28 @@ public class Player : MonoBehaviour
 		LayerManager.AssignLayer(this);
 //		Debug.Log("Starting player on layer: " + layer.color);
 
-		p1Label.SetActive(playerID == 1);
-		p2Label.SetActive(playerID == 2);
+		if (playerID == 1) {
+			activeLabel = p1Label;
+		} else {
+			activeLabel = p2Label;
+		}
+
+		activeLabel.SetActive(true);
+	}
+
+	void Update ()
+	{
+		FlipLabel();
+	}
+
+	void FlipLabel ()
+	{
+		var currentScale = activeLabel.transform.localScale;
+
+		if (transform.localScale.x < 0 && currentScale.x > 0) {
+			var newScale = currentScale;
+			newScale.x *= -1;
+			activeLabel.transform.localScale = newScale;
+		}
 	}
 }

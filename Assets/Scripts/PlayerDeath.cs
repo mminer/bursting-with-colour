@@ -9,6 +9,7 @@ public class PlayerDeath : MonoBehaviour {
 	public void PlayerKilled()
 	{
 		PlayerManager.LoseLife();
+		AudioManager.PlayDeath();
 
 		if (particles != null)
 		{

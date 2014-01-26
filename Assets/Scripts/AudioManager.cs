@@ -6,6 +6,8 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
 	public AudioClip switchEffect;
+	public AudioClip scream;
+	public AudioClip splat;
 
 	static AudioManager instance;
 
@@ -17,5 +19,11 @@ public class AudioManager : MonoBehaviour
 	public static void PlaySwitchEffect ()
 	{
 		instance.audio.PlayOneShot(instance.switchEffect);
+	}
+
+	public static void PlayDeath ()
+	{
+		instance.audio.PlayOneShot(instance.scream);
+		instance.audio.PlayOneShot(instance.splat);
 	}
 }
