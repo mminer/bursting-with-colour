@@ -13,6 +13,11 @@ public class HUD : MonoBehaviour
 		screenRect = new Rect(0, 0, Screen.width, Screen.height);
 	}
 
+	void Update ()
+	{
+		CheckPressedStart();
+	}
+
 	void OnGUI ()
 	{
 		GUI.skin = guiSkin;
@@ -63,5 +68,26 @@ public class HUD : MonoBehaviour
 
 		GUILayout.FlexibleSpace();
 		GUILayout.EndArea();
+	}
+
+	void CheckPressedStart ()
+	{
+		var suffix = "Win";
+		
+		#if UNITY_STANDALONE_OSX
+		suffix = "Mac";
+		#endif
+
+		var p1Start = GenerateInputName("Start", 1, suffix);
+		var p2Start = GenerateInputName("Start", 2, suffix);
+
+		if (Input.GetButtonDown(p1Start) || Input.GetButtonDown(p2Start)) {
+			Application.LoadLevel(Application.loadedLevelName);
+		}
+	}
+	
+	string GenerateInputName (string prefix, int playerID, string suffix)
+	{
+		return prefix + "_" + playerID + "_" + suffix;
 	}
 }

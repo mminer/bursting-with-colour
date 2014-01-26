@@ -13,7 +13,6 @@ public class Platformer2DUserControl : MonoBehaviour
 	string bInputName;
 	string xInputName;
 	string yInputName;
-	string startInputName;
 
 	void Awake() 
 	{
@@ -30,7 +29,6 @@ public class Platformer2DUserControl : MonoBehaviour
 		}
 
 		CheckColourSwitch();
-		CheckPressedStart();
     }
 
 	void FixedUpdate ()
@@ -60,7 +58,6 @@ public class Platformer2DUserControl : MonoBehaviour
 		bInputName = GenerateInputName("B", suffix);
 		xInputName = GenerateInputName("X", suffix);
 		yInputName = GenerateInputName("Y", suffix);
-		startInputName = GenerateInputName("Start", suffix);
 	}
 
 	string GenerateInputName (string prefix, string suffix)
@@ -78,13 +75,6 @@ public class Platformer2DUserControl : MonoBehaviour
 			LayerManager.ToggleLayer(gameObject, LayerColor.Blue);
 		} else if (Input.GetButtonDown(yInputName)) {
 			LayerManager.ToggleLayer(gameObject, LayerColor.Yellow);
-		}
-	}
-
-	void CheckPressedStart ()
-	{
-		if (Input.GetButtonDown(startInputName)) {
-			Application.LoadLevel(Application.loadedLevelName);
 		}
 	}
 }
