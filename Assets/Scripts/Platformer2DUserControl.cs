@@ -24,8 +24,17 @@ public class Platformer2DUserControl : MonoBehaviour
     void Update ()
     {
         // Read the jump input in Update so button presses aren't missed.
-        if (CrossPlatformInput.GetAxis(jumpInputName) < 0) {
+        if (CrossPlatformInput.GetAxis(jumpInputName) < 0)
+		{
             jump = true;
+		}
+		//keyboard input
+		else
+		{
+			if ((player.playerID == 1) && (Input.GetKey (KeyCode.W)))
+				jump = true;
+			else if ((player.playerID == 2) && (Input.GetKey (KeyCode.UpArrow)))
+				jump = true;
 		}
 
 		CheckColourSwitch();
@@ -36,7 +45,17 @@ public class Platformer2DUserControl : MonoBehaviour
 		// Read the inputs.
 		bool crouch = Input.GetKey(KeyCode.LeftControl);
 		float h = CrossPlatformInput.GetAxis(moveInputName);
-
+		if (h == 0)
+		{
+			if ((player.playerID == 1) && Input.GetKey(KeyCode.A))
+				h = -1f;
+			else if ((player.playerID == 2) && Input.GetKey(KeyCode.LeftArrow))
+				h = -1f;
+			else if ((player.playerID == 1) && Input.GetKey(KeyCode.D))
+				h = 1f;
+			else if ((player.playerID == 2) && Input.GetKey(KeyCode.RightArrow))
+				h = 1f;
+		}
 		// Pass all parameters to the character control script.
 		character.Move(h, crouch, jump);
 
@@ -67,13 +86,16 @@ public class Platformer2DUserControl : MonoBehaviour
 
 	void CheckColourSwitch ()
 	{
-		if (Input.GetButtonDown(aInputName)) {
+		if (Input.GetButtonDown(aInputName) || ((player.playerID == 1) && Input.GetKey(KeyCode.F)) || ((player.playerID == 2) && Input.GetKey(KeyCode.Keypad1))) {
 			LayerManager.ToggleLayer(gameObject, LayerColor.Green);
-		} else if (Input.GetButtonDown(bInputName)) {
+		}
+		else if (Input.GetButtonDown(bInputName) || ((player.playerID == 1) && Input.GetKey(KeyCode.G)) || ((player.playerID == 2) && Input.GetKey(KeyCode.Keypad2))) {
 			LayerManager.ToggleLayer(gameObject, LayerColor.Red);
-		} else if (Input.GetButtonDown(xInputName)) {
+		}
+		else if (Input.GetButtonDown(xInputName) || ((player.playerID == 1) && Input.GetKey(KeyCode.H)) || ((player.playerID == 2) && Input.GetKey(KeyCode.Keypad3))) {
 			LayerManager.ToggleLayer(gameObject, LayerColor.Blue);
-		} else if (Input.GetButtonDown(yInputName)) {
+		}
+		else if (Input.GetButtonDown(yInputName) || ((player.playerID == 1) && Input.GetKey(KeyCode.J)) || ((player.playerID == 2) && Input.GetKey(KeyCode.KeypadEnter))) {
 			LayerManager.ToggleLayer(gameObject, LayerColor.Yellow);
 		}
 	}
