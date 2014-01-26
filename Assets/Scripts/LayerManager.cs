@@ -17,6 +17,8 @@ public class LayerManager : MonoBehaviour
 	public static Dictionary<LayerColor, Material> activeMaterials { get; private set; }
 	public static Dictionary<LayerColor, Material> inactiveMaterials { get; private set; }
 
+	const float inactiveAlpha = 0.2f;
+
 	void Awake ()
 	{
 		layers = new Dictionary<LayerColor, Layer>();
@@ -24,14 +26,16 @@ public class LayerManager : MonoBehaviour
 		inactiveMaterials = new Dictionary<LayerColor, Material>();
 
 		var layerComponents = GameObject.FindGameObjectsWithTag("Layer")
-			.Select(go => go.GetComponent<Layer>())
-			.ToArray();
+			.Select(go => go.GetComponent<Layer>());
 
 		foreach (var color in System.Enum.GetValues(typeof(LayerColor)).Cast<LayerColor>()) {
 			layers[color] = layerComponents.First(layer => layer.color == color);
 			activeMaterials[color] = GetActiveMaterial(color);
 			inactiveMaterials[color] = GetInactiveMaterial(color);
 		}
+
+		// Ensure solid "colour" is always active.
+		layers[LayerColor.Solid].active = true;
 	}
 
 	Material GetActiveMaterial (LayerColor color)
@@ -45,7 +49,7 @@ public class LayerManager : MonoBehaviour
 	{
 		var material = new Material(baseMaterial);
 		var materialColor = ColorManager.colors[color];
-		material.color = new Color(materialColor.r, materialColor.g, materialColor.b, 0.2f);
+		material.color = new Color(materialColor.r, materialColor.g, materialColor.b, inactiveAlpha);
 		return material;
 	}
 
@@ -56,7 +60,7 @@ public class LayerManager : MonoBehaviour
 			.Select(kvp => kvp.Value)
 			.ToArray();
 
-		var layer = inactiveLayers[Random.Range(0, inactiveLayers.Length -1)];
+		var layer = inactiveLayers[Random.Range(0, inactiveLayers.Length)];
 		layer.active = true;
 		player.layer = layer;
 	}
