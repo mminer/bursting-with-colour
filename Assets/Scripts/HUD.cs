@@ -11,6 +11,7 @@ public class HUD : MonoBehaviour
 	void Update ()
 	{
 		DetermineGameOverRect();
+		CheckPressedStart();
 	}
 
 	void OnGUI ()
@@ -65,5 +66,26 @@ public class HUD : MonoBehaviour
 		gameOverRect.height = gameOverRect.width / 2;
 		gameOverRect.x = (Screen.width / 2) - (gameOverRect.width / 2);
 		gameOverRect.y = (Screen.height / 2) - (gameOverRect.height / 2);
+	}
+
+	void CheckPressedStart ()
+	{
+		var suffix = "Win";
+		
+		#if UNITY_STANDALONE_OSX
+		suffix = "Mac";
+		#endif
+
+		var p1Start = GenerateInputName("Start", 1, suffix);
+		var p2Start = GenerateInputName("Start", 2, suffix);
+
+		if (Input.GetButtonDown(p1Start) || Input.GetButtonDown(p2Start)) {
+			Application.LoadLevel(Application.loadedLevelName);
+		}
+	}
+	
+	string GenerateInputName (string prefix, int playerID, string suffix)
+	{
+		return prefix + "_" + playerID + "_" + suffix;
 	}
 }
