@@ -18,7 +18,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 	bool grounded = false;								// Whether or not the player is grounded.
 	Transform ceilingCheck;								// A position marking where to check for ceilings
 	Transform airControlCheck;							// A position marking where to check if the player is colliding in the air.
-	float airRadius = .7f;								// Radius of the overlap circle to determine if air control should be lost
+	float airRadius = .65f;								// Radius of the overlap circle to determine if air control should be lost
 	bool loseAirControl;								// Boolean to take away air control abilities
 	float ceilingRadius = .01f;							// Radius of the overlap circle to determine if the player can stand up
 	Animator anim;										// Reference to the player's animator component.

@@ -20,6 +20,7 @@ public class PlayerManager : MonoBehaviour
 	{
 		instance = this;
 		players = GameObject.FindGameObjectsWithTag("Player");
+		gameOver = false;
 	}
 
 	public static void LoseLife ()

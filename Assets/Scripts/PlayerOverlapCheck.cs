@@ -7,7 +7,7 @@ public class PlayerOverlapCheck : MonoBehaviour {
 	{
 		LayerMask mask = ~(1 << 9);
 		Vector2 start = new Vector2(transform.position.x, transform.position.y);
-		RaycastHit2D hit = Physics2D.Raycast(start, -Vector2.up, transform.parent.localScale.y * 0.8f, mask);
+		RaycastHit2D hit = Physics2D.Raycast(start, -Vector2.up, transform.parent.localScale.y * 0.7f, mask);
 
 		if (hit.collider != null) {
 			SendMessageUpwards("PlayerKilled");
