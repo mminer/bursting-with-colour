@@ -24,6 +24,6 @@ X, Y) switch the colours of blocks in the level.
 
 ## Credits
 
-Brad Keys
-Matthew Miner
-Brent Mitchell
+- Brad Keys
+- Matthew Miner
+- Brent Mitchell
