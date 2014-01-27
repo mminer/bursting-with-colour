@@ -1906,6 +1906,10 @@ Prefab:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
+      propertyPath: whatIsGround.m_Bits
+      value: 4294966783
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbffd1a816dce46968e411f8916c5cb2, type: 2}
   m_RootGameObject: {fileID: 310524050}
