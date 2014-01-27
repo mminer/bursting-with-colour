@@ -13,6 +13,8 @@ public class Platformer2DUserControl : MonoBehaviour
 	string bInputName;
 	string xInputName;
 	string yInputName;
+	string triggerName;
+	string bumpersName;
 
 	void Awake() 
 	{
@@ -24,7 +26,9 @@ public class Platformer2DUserControl : MonoBehaviour
     void Update ()
     {
         // Read the jump input in Update so button presses aren't missed.
-        if (CrossPlatformInput.GetAxis(jumpInputName) < -0.2f)
+        if (CrossPlatformInput.GetAxis(jumpInputName) < -0.2f ||
+		    CrossPlatformInput.GetAxis(triggerName) > 0 ||
+		    CrossPlatformInput.GetButton(bumpersName))
 		{
             jump = true;
 		}
@@ -70,6 +74,10 @@ public class Platformer2DUserControl : MonoBehaviour
 		#if UNITY_STANDALONE_OSX
 		suffix = "Mac";
 		#endif
+
+		#if UNITY_EDITOR_OSX
+		suffix = "Mac";
+		#endif
 		
 		jumpInputName = GenerateInputName("L_YAxis", suffix);
 		moveInputName = GenerateInputName("L_XAxis", suffix);
@@ -77,6 +85,8 @@ public class Platformer2DUserControl : MonoBehaviour
 		bInputName = GenerateInputName("B", suffix);
 		xInputName = GenerateInputName("X", suffix);
 		yInputName = GenerateInputName("Y", suffix);
+		triggerName = GenerateInputName("Triggers", suffix);
+		bumpersName = GenerateInputName("Bumpers", suffix);
 	}
 
 	string GenerateInputName (string prefix, string suffix)

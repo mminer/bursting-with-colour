@@ -75,6 +75,10 @@ public class HUD : MonoBehaviour
 		suffix = "Mac";
 		#endif
 
+		#if UNITY_EDITOR_OSX
+		suffix = "Mac";
+		#endif
+
 		var p1Start = GenerateInputName("Start", 1, suffix);
 		var p2Start = GenerateInputName("Start", 2, suffix);
 

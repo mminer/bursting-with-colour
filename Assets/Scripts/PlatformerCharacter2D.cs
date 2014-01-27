@@ -17,31 +17,51 @@ public class PlatformerCharacter2D : MonoBehaviour
 	float groundedRadius = .2f;							// Radius of the overlap circle to determine if grounded
 	bool grounded = false;								// Whether or not the player is grounded.
 	Transform ceilingCheck;								// A position marking where to check for ceilings
-	Transform airControlCheck;							// A position marking where to check if the player is colliding in the air.
+	Transform airControlCheckTop;							// A position marking where to check if the player is colliding in the air.
+	Transform airControlCheckBottom;	
 	float airRadius = .4f;								// Radius of the overlap circle to determine if air control should be lost
 	bool loseAirControl;
 	bool loseAirControlRight;								// Boolean to take away air control abilities
 	bool loseAirControlLeft;
 	float ceilingRadius = .01f;							// Radius of the overlap circle to determine if the player can stand up
 	Animator anim;										// Reference to the player's animator component.
-	
+	bool jumped;
+	float jumpStartTime;
+	bool landed;
+	float landTime;
+	bool canJump;
+
 	void Awake ()
 	{
 		// Setting up references.
 		groundCheck = transform.Find("GroundCheck");
 		ceilingCheck = transform.Find("CeilingCheck");
-		airControlCheck = transform.Find("AirControlCheck");
+		airControlCheckTop = transform.Find("AirControlCheck_Top");
+		airControlCheckBottom = transform.Find("AirControlCheck_Bottom");
 		anim = GetComponent<Animator>();
 	}
 	
-	
 	void FixedUpdate ()
 	{
+		// Give the player some time to get off the ground
+		if (jumped && Time.time - jumpStartTime > 0.1f) {
+			jumped = false;
+		}
+
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundedRadius, whatIsGround);
 		anim.SetBool("Ground", grounded);
-		
-		loseAirControl = Physics2D.OverlapCircle(airControlCheck.position, airRadius, whatIsGround);
+
+		if (!landed && grounded) {
+			landed = true;
+			rigidbody2D.velocity = Vector2.zero;
+		}
+
+		loseAirControl = Physics2D.OverlapCircle(airControlCheckTop.position, airRadius, whatIsGround);
+
+		if (!loseAirControl) {
+			loseAirControl = Physics2D.OverlapCircle(airControlCheckBottom.position, airRadius, whatIsGround);
+		}
 		
 		if (loseAirControl) {
 			if (facingRight) {
@@ -104,7 +124,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 		}
 		
 		// If the player should jump...
-		if (grounded && jump) {
+		if (grounded && jump && !jumped) {
 			Jump();
 		}
 	}
@@ -114,6 +134,9 @@ public class PlatformerCharacter2D : MonoBehaviour
 		// Add a vertical force to the player.
 		anim.SetBool("Ground", false);
 		rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+		jumpStartTime = Time.time;
+		jumped = true;
+		landed = false;
 	}
 	
 	

@@ -195,7 +195,7 @@ MonoBehaviour:
   gridWidth: 20
   mapHeight: 150
   safeZoneWidth: 5
-  chanceOfBlankTile: .300000012
+  chanceOfBlankTile: .600000024
   chanceOfNeighbourColour: .600000024
   levelLayout: 1
 --- !u!114 &11400010
