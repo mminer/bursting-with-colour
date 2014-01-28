@@ -13,6 +13,11 @@ public class DisplayScore : MonoBehaviour {
 		int score = ScoreManager.score;
 		string label = "Score: " + score;
 		string bonus = "2P Bonus: " + ScoreManager.bonus;
-		GUI.Label(labelRect, label + "\n" + bonus);
+
+		if (PlayerManager.maxPlayers > 1) {
+			label += "\n" + bonus;
+		}
+
+		GUI.Label(labelRect, label);
 	}
 }

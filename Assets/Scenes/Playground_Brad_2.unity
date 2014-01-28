@@ -713,6 +713,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: f1dbb2bf307ec4498bd761ceb5406c8e, type: 2}
+      propertyPath: progressFromEasy
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1dbb2bf307ec4498bd761ceb5406c8e, type: 2}
   m_RootGameObject: {fileID: 1122582933}
@@ -1026,6 +1030,7 @@ MonoBehaviour:
   safeZoneWidth: 5
   chanceOfBlankTile: .600000024
   chanceOfNeighbourColour: .600000024
+  progressFromEasy: 1
   levelLayout: 1
 --- !u!114 &1122582940
 MonoBehaviour:

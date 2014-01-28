@@ -5,6 +5,7 @@ public class PlayerManager : MonoBehaviour
 	public int playerLives = 2;
 	public static bool gameOver = false;
 	public static GameObject[] players;
+	public static int maxPlayers;
 
 	public static int lives
 	{
@@ -20,7 +21,14 @@ public class PlayerManager : MonoBehaviour
 	{
 		instance = this;
 		players = GameObject.FindGameObjectsWithTag("Player");
+
+		if (players.Length > 1) {
+			Physics2D.IgnoreLayerCollision(players[0].layer, players[1].layer);
+		}
+
 		gameOver = false;
+		maxPlayers = players.Length;
+		playerLives = maxPlayers;
 	}
 
 	public static void LoseLife ()

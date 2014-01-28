@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
 	public int safeZoneWidth = 5;
 	public float chanceOfBlankTile = 0.2f;
 	public float chanceOfNeighbourColour = 0.5f;
-
+	public bool progressFromEasy;
 	public enum Layout { Solid, Rows };
 	public Layout levelLayout;
 	int rowsBeforeSafety = 3;
@@ -82,7 +82,25 @@ public class LevelManager : MonoBehaviour
 
 	void GenerateTiles ()
 	{
+		if (progressFromEasy) {
+			chanceOfBlankTile *= 0.5f;
+			chanceOfNeighbourColour *= 1.25f;
+		}
+
 		for (int y = 0; y < mapHeight; y++) {
+			if (progressFromEasy && y % 12 == 0) {
+				chanceOfBlankTile *= 1.1f;
+				chanceOfNeighbourColour *= 0.9f;
+
+				if (chanceOfBlankTile > 0.7f) {
+					chanceOfBlankTile = 0.7f;
+				}
+
+				if (chanceOfNeighbourColour < 0.1f) {
+					chanceOfNeighbourColour = 0.1f;
+				}
+			}
+
 			LayerColor lastColor = LayerColor.Solid;
 
 			if (levelLayout == Layout.Rows) {
